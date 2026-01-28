@@ -1,26 +1,80 @@
 @import "tailwindcss";
 
 :root {
+  /* OMCC Premium Theme (Zinc & Red) */
+  --primary: #c62828;
+  /* Professional Deep Red */
+  --primary-foreground: #ffffff;
+
+  --secondary: #18181b;
+  /* Zinc 900 */
+  --secondary-foreground: #ffffff;
+
+  /* Backgrounds */
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #18181b;
+  /* Zinc 900 */
+
+  /* Surface/Cards */
+  --card: #ffffff;
+  --card-foreground: #18181b;
+
+  /* Status Colors */
+  --success: #15803d;
+  /* Emerald 700 */
+  --success-foreground: #ffffff;
+  --warning: #b45309;
+  /* Amber 700 */
+  --warning-foreground: #ffffff;
+  --danger: #dc2626;
+  /* Red 600 */
+  --danger-foreground: #ffffff;
+
+  --muted: #f4f4f5;
+  /* Zinc 100 */
+  --muted-foreground: #71717a;
+  /* Zinc 500 */
+
+  --border: #e4e4e7;
+  /* Zinc 200 */
+  --input: #e4e4e7;
+  --ring: #c62828;
+
+  --radius: 0.75rem;
+  /* 12px rounded corners */
 }
 
 @theme inline {
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  /* Subtle dot pattern background */
+  background-image: radial-gradient(#e4e4e7 1px, transparent 1px);
+  background-size: 24px 24px;
 }
