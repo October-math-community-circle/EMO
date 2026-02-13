@@ -1,19 +1,29 @@
 "use client";
 import { createContext, useEffect, useState } from "react";
-import { onAuthStateChanged, User } from "firebase/auth";
+import { onIdTokenChanged } from "firebase/auth";
 import { signin } from "@/app/server-actions/signin";
 import { signout } from "@/app/server-actions/signout";
 import { auth } from "./";
+import { User } from "@/types/auth";
 export const FirebaseContext = createContext<{ user: User | null }>({
   user: null,
 });
-function Context({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
+function Context({
+  children,
+  initialUser,
+}: {
+  children: React.ReactNode;
+  initialUser: User | null;
+}) {
+  const [user, setUser] = useState<User | null>(initialUser);
   useEffect(() => {
-    const unSub = onAuthStateChanged(auth, async (user) => {
+    const unSub = onIdTokenChanged(auth, async (user) => {
+      console.log({ user });
+
       if (user) {
-        setUser(user);
-        await signin(await user.getIdToken());
+        const { claims, token } = await user.getIdTokenResult(true);
+        await signin(token);
+        setUser({ ...user, claims });
       } else {
         setUser(null);
         await signout();

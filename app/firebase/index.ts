@@ -25,8 +25,8 @@ export const realtimeDb = getDatabase(app);
 // connect to emulators when running in dev mode only
 
 if (process.env.NODE_ENV === "development") {
-  connectFirestoreEmulator(db, window.location.hostname, 8080);
-  connectAuthEmulator(auth, `http://${window.location.hostname}:9099`);
-  connectStorageEmulator(storage, window.location.hostname, 9199);
-  connectDatabaseEmulator(realtimeDb, window.location.hostname, 9000);
+  connectFirestoreEmulator(db, "192.168.1.7", 8080);
+  connectAuthEmulator(auth, `http://192.168.1.7:9099`);
+  connectStorageEmulator(storage, "192.168.1.7", 9199);
+  connectDatabaseEmulator(realtimeDb, "192.168.1.7", 9000);
 }
