@@ -31,7 +31,7 @@ export default function Home() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/auth/register">
+                <Link href="/register">
                   <Button size="lg" className="w-full sm:w-auto text-base h-12">
                     Join the Competition
                   </Button>

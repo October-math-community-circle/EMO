@@ -12,6 +12,7 @@ import { auth } from "@/app/firebase";
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
   { label: "Competition", href: "/competitions" },
+  { label: "Register", href: "/register" },
   { label: "Results", href: "/results" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
@@ -22,7 +23,6 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const user = useUser();
-  console.log({ user });
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(Math.floor(window.scrollY) > 10);
@@ -40,7 +40,7 @@ export function Navbar() {
       }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center pb-2.5">
           {/* Logo Section */}
           <div className="flex items-center gap-3">
             <Link href="/" className="flex items-center gap-3 group">
@@ -78,7 +78,7 @@ export function Navbar() {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8">
             <div className="flex items-center gap-1 bg-zinc-100/50 p-1 rounded-full border border-zinc-200/50">
               {NAV_ITEMS.map((item) => {
                 const isActive = pathname === item.href;
@@ -96,6 +96,18 @@ export function Navbar() {
                   </Link>
                 );
               })}
+              {user ? (
+                <Link
+                  href={`/dashboard/${user.claims.role}`}
+                  className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                    pathname === "/dashboard"
+                      ? "bg-white text-primary shadow-sm ring-1 ring-zinc-200"
+                      : "text-muted-foreground hover:text-foreground hover:bg-zinc-200/50"
+                  }`}
+                >
+                  Dashboard
+                </Link>
+              ) : null}
             </div>
             <Button
               onClick={async () => {
@@ -119,27 +131,26 @@ export function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center md:hidden">
+          <div className="flex items-center lg:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center rounded-lg p-2 text-muted-foreground hover:bg-zinc-100 focus:outline-none transition-colors"
+              className="cursor-pointer flex items-center justify-center rounded-lg p-2 text-muted-foreground hover:bg-zinc-100 focus:outline-none transition-colors"
               aria-label="Toggle menu"
             >
               <div className="relative w-6 h-6">
                 <span
-                  className={`absolute bg-current transition-all duration-300 h-0.5 w-6 rounded-full ${
-                    isOpen ? "rotate-45 top-3" : "top-1.5"
+                  className={`absolute left-0 bg-current transition-all duration-300 h-0.5 w-6 rounded-full ${
+                    isOpen ? "rotate-45 top-2.75" : "top-1.5"
                   }`}
                 />
                 <span
-                  className={`absolute bg-current transition-all duration-300 h-0.5 w-6 rounded-full top-3 ${
+                  className={`absolute left-0 bg-current transition-all duration-300 h-0.5 w-6 rounded-full top-2.75 ${
                     isOpen ? "opacity-0 scale-x-0" : "opacity-100"
                   }`}
                 />
                 <span
-                  className={`absolute bg-current transition-all duration-300 h-0.5 w-6 rounded-full ${
-                    isOpen ? "-rotate-45 top-3" : "top-4.5" // 4.5 is roughly 18px/4 = 4.5 units? No, Tailwind uses rems mostly.
-                    // Actually 1.5 top is 6px. 3 top is 12px. 4.5 top is 18px.
+                  className={`absolute left-0 bg-current transition-all duration-300 h-0.5 w-6 rounded-full ${
+                    isOpen ? "-rotate-45 top-2.75" : "top-4.5"
                   }`}
                 />
               </div>
@@ -150,8 +161,8 @@ export function Navbar() {
 
       {/* Mobile Menu Container */}
       <div
-        className={`md:hidden overflow-hidden transition-[max-height] duration-300 ease-in-out border-b border-border bg-white ${
-          isOpen ? "max-h-96" : "max-h-0"
+        className={`lg:hidden overflow-hidden transition-[max-height] duration-300 ease-in-out border-b border-border bg-white ${
+          isOpen ? "max-h-max" : "max-h-0"
         }`}
       >
         <div className="space-y-1 px-4 py-4">
@@ -172,7 +183,20 @@ export function Navbar() {
               </Link>
             );
           })}
-          <div className="pt-4 mt-2 border-t border-dashed border-border px-1">
+          {user ? (
+            <Link
+              href={`/dashboard/${user.claims.role}`}
+              onClick={() => setIsOpen(false)}
+              className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${
+                pathname === `/dashboard/${user.claims.role}`
+                  ? "bg-primary/5 text-primary"
+                  : "text-foreground hover:bg-zinc-50"
+              }`}
+            >
+              Dashboard
+            </Link>
+          ) : null}
+          <div className=" mt-2 border-t border-dashed border-border px-1">
             <Button
               onClick={async () => {
                 await signOut(auth);

@@ -29,7 +29,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             </div>
           )}
         </div>
-        {error && <p className="text-sm text-danger">{error}</p>}
+        <p
+          className="text-sm text-danger min-h-5"
+          style={{ display: error ? "block" : "none" }}
+        >
+          {error}
+        </p>
       </div>
     );
   },
