@@ -7,13 +7,17 @@ import * as yup from "yup";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 import { auth, db } from "@/app/firebase";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
-import { ForwardedRef, MutableRefObject, RefObject, useState } from "react";
+import { ForwardedRef, RefObject, useState } from "react";
 import { useRouter } from "next/navigation";
 import { FirebaseAuthError } from "firebase-admin/auth";
 import authRedirect from "@/app/auth/authRedirect";
+import { assignUserRole } from "./assignUserRole";
 // create a yup schema for form validation with hook form using yup
 const capitalLettersRegex = /[A-Z]/g;
 const smallLetterRegex = /[a-z]/g;
@@ -60,7 +64,6 @@ function RegisterPage({}, ref: ForwardedRef<boolean>) {
     phone,
   }: yup.InferType<typeof schema>) => {
     try {
-      alert("submitting");
       (ref as RefObject<boolean>).current = true;
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -68,6 +71,7 @@ function RegisterPage({}, ref: ForwardedRef<boolean>) {
         password,
       );
       const userDoc = doc(db, "users", userCredential.user.uid);
+      await assignUserRole(userCredential.user.uid);
       await setDoc(userDoc, {
         fullName,
         email,
@@ -80,6 +84,10 @@ function RegisterPage({}, ref: ForwardedRef<boolean>) {
       // Show success modal
       setRegisteredEmail(email);
       setShowSuccess(true);
+      await Promise.allSettled([
+        sendEmailVerification(userCredential.user),
+        userCredential.user.reload(),
+      ]);
     } catch (error) {
       console.log(error);
       alert(error);
@@ -105,7 +113,7 @@ function RegisterPage({}, ref: ForwardedRef<boolean>) {
         <CardContent>
           {/* eslint-disable-next-line react-hooks/refs */}
           <form onSubmit={handleSubmit(createUser)} className="space-y-6">
-            <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-y-1.5 gap-x-2 sm:grid-cols-2">
               <div className="sm:col-span-2">
                 <Input
                   {...register("fullName")}
@@ -265,7 +273,7 @@ function RegisterPage({}, ref: ForwardedRef<boolean>) {
         }}
         title="Registration Successful! 🎉"
       >
-        <div className="space-y-4">
+        <div className="space-y-2">
           <p className="text-lg">
             Welcome to the <strong>Egyptian Math Olympiad</strong>!
           </p>
@@ -274,6 +282,9 @@ function RegisterPage({}, ref: ForwardedRef<boolean>) {
             <span className="font-semibold text-primary">
               {registeredEmail}
             </span>
+          </p>
+          <p className="text-gray-600 font-semibold">
+            Please check your email for a verification link.
           </p>
           <p className="text-gray-600">
             You can now log in to access your student dashboard and start your

@@ -10,10 +10,13 @@ export async function signin(jwt: string) {
     cookiesObj.set("session", cookie, {
       httpOnly: true,
       maxAge: expiresIn,
-      secure: true,
+      secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
     });
+    console.log("signIn action");
   } catch (error) {
-    console.log(error);
+    console.log({ signInServerActionError: error });
+  } finally {
+    return null;
   }
 }
