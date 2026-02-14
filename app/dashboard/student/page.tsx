@@ -1,5 +1,3 @@
-"use server";
-
 import { Card, CardContent } from "@/components/ui/Card";
 import getUser from "@/lib/utils/getUser";
 import { db } from "@/app/firebase-admin";
@@ -7,7 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Registration } from "@/types/registration";
 import { RegistrationCard } from "./RegistrationCard";
-
+export const dynamic = "force-dynamic";
 export default async function StudentDashboard() {
   const user = await getUser();
   const registrations = (

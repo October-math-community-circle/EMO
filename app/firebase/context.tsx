@@ -8,14 +8,8 @@ import { User } from "@/types/auth";
 export const FirebaseContext = createContext<{ user: User | null }>({
   user: null,
 });
-function Context({
-  children,
-  initialUser,
-}: {
-  children: React.ReactNode;
-  initialUser: User | null;
-}) {
-  const [user, setUser] = useState<User | null>(initialUser);
+function Context({ children }: { children: React.ReactNode }) {
+  const [user, setUser] = useState<User | null>(null);
   useEffect(() => {
     const unSub = onIdTokenChanged(auth, async (user) => {
       console.log({ user });
