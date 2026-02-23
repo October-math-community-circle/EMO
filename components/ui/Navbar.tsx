@@ -201,6 +201,7 @@ export function Navbar() {
               onClick={async () => {
                 await signOut(auth);
               }}
+              variant="outline"
               className={`w-full justify-center ${user ? "" : "hidden!"}`}
             >
               sign out
