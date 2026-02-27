@@ -3,8 +3,9 @@ import getUser from "@/lib/utils/getUser";
 import { db } from "@/app/firebase-admin";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { Registration } from "@/types/registration";
+import { Mark, Registration } from "@/types/registration";
 import { RegistrationCard } from "./RegistrationCard";
+import { Timestamp } from "firebase-admin/firestore";
 export const dynamic = "force-dynamic";
 export default async function StudentDashboard() {
   const user = await getUser();
@@ -15,7 +16,23 @@ export default async function StudentDashboard() {
     ...doc.data(),
     createdAt: doc.createTime.toDate().toISOString(),
   })) as Registration[];
-
+  const marks: Mark[] = [];
+  for (const reg of registrations) {
+    if (reg.marked) {
+      const markDoc = await db
+        .collection("marks")
+        .where("registrationId", "==", reg.id)
+        .get();
+      if (markDoc.empty) continue;
+      marks.push({
+        ...(markDoc.docs[0].data() as Mark),
+        id: markDoc.docs[0].id,
+        markedAt: ((markDoc.docs[0].data() as Mark).markedAt as Timestamp)
+          .toDate()
+          .toString(),
+      });
+    }
+  }
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
       <div className="mb-8">
@@ -39,7 +56,15 @@ export default async function StudentDashboard() {
           </Card>
         ) : (
           registrations.map((reg) => (
-            <RegistrationCard key={reg.id} registration={reg} />
+            <RegistrationCard
+              mark={
+                marks.find(
+                  (mark) => mark.registrationId === reg.id,
+                ) as Mark | null
+              }
+              key={reg.id}
+              registration={reg}
+            />
           ))
         )}
       </div>

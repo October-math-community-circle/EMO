@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Modal } from "@/components/ui/Modal";
-import { Registration } from "@/types/registration";
+import { Mark, Registration } from "@/types/registration";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/app/firebase";
 import { useRouter } from "next/navigation";
@@ -59,8 +59,10 @@ const registrationSchema = yup.object({
 
 export function RegistrationCard({
   registration,
+  mark,
 }: {
   registration: Registration;
+  mark: Mark | null;
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -116,7 +118,12 @@ export function RegistrationCard({
                 {registration.expired ? "Expired" : "Active"}
               </Badge>
               {!registration.expired && (
-                <Button variant="outline" size="sm" onClick={handleOpenModal}>
+                <Button
+                  disabled={isSubmitting || registration.marked}
+                  variant="outline"
+                  size="sm"
+                  onClick={handleOpenModal}
+                >
                   Edit
                 </Button>
               )}
@@ -140,7 +147,9 @@ export function RegistrationCard({
             <div>
               <p className="text-muted-foreground">Mark</p>
               <p className="font-medium">
-                {registration.marked ? registration.mark : "Not Marked"}
+                {registration.marked && mark != null
+                  ? mark.mark
+                  : "Not Marked"}
               </p>
             </div>
           </div>

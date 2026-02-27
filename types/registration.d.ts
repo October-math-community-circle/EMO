@@ -7,6 +7,14 @@ export interface Registration {
   nationalId: string;
   expired: boolean;
   createdAt: ClientTimestamp | ServerTimestamp | string;
-  mark: number;
   marked: boolean;
+  competitionId: string;
+  uid: string;
+}
+export interface Mark {
+  id: string;
+  registrationId: string;
+  mark: number;
+  markedAt: ClientTimestamp | ServerTimestamp | string;
+  markedBy: string;
 }
