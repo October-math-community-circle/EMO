@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Button } from "./Button";
 import { useUser } from "@/app/hooks/useUser";
@@ -11,9 +11,7 @@ import { auth } from "@/app/firebase";
 
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
-  { label: "Competition", href: "/competitions" },
   { label: "Register", href: "/register" },
-  { label: "Results", href: "/results" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
