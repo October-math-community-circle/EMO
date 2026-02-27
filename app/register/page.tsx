@@ -16,7 +16,7 @@ export default function CompetitionsListPage() {
       try {
         const q = query(
           collection(db, "competitions"),
-          where("status", "in", ["open"]),
+          where("status", "==", "open"),
           orderBy("createdAt", "desc"),
         );
         const snapshot = await getDocs(q);
