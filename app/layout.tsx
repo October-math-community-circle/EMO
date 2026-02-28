@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
 import FirebaseContext from "./firebase/context";
+import { GoogleAnalytics } from "@next/third-parties/google";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -37,6 +38,7 @@ export default function RootLayout({
           <main className="flex-grow">{children}</main>
           <Footer />
         </FirebaseContext>
+        <GoogleAnalytics gaId="G-QJ3207HWPD" />
       </body>
     </html>
   );
