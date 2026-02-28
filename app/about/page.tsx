@@ -2,7 +2,19 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent } from "@/components/ui/Card";
 import Image from "next/image";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "About Us",
+  description: "About Us",
+  openGraph: {
+    title: "About Us",
+    description: "About Us",
+  },
+  twitter: {
+    title: "About Us",
+    description: "About Us",
+  },
+};
 export default function AboutPage() {
   return (
     <div className="flex flex-col min-h-screen bg-white selection:bg-primary/20 overflow-x-hidden">

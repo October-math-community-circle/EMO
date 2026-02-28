@@ -1,6 +1,33 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "404 - Page Not Found",
+  description: "404 - Page Not Found",
+  openGraph: {
+    title: "404 - Page Not Found",
+    description: "404 - Page Not Found",
+    url: "https://egyptianmatholympiad.com",
+    siteName: "Egyptian Math Olympiad",
+    images: [
+      {
+        url: "https://egyptianmatholympiad.com/logo.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Egyptian Math Olympiad",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "404 - Page Not Found",
+    description: "404 - Page Not Found",
+    images: ["https://egyptianmatholympiad.com/logo.jpg"],
+  },
+};
 export default function NotFound() {
   return (
     <div className="min-h-[calc(100vh-5rem)] flex items-center justify-center px-4 py-16 bg-gradient-to-br from-white via-red-50/20 to-white">

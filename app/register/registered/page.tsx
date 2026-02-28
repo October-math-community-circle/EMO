@@ -1,6 +1,18 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Registered",
+  description: "Registered",
+  openGraph: {
+    title: "Registered",
+    description: "Registered",
+  },
+  twitter: {
+    title: "Already Registered",
+    description: "Already Registered",
+  },
+};
 export default function AlreadyRegistered() {
   return (
     <div className="min-h-[calc(100vh-5rem)] flex items-center justify-center px-4 py-16 bg-gradient-to-br from-white via-primary/5 to-white">

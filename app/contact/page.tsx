@@ -6,7 +6,6 @@ export const metadata = {
   description:
     "Get in touch with the October Math Community Circle for any inquiries about the Egyptian Math Olympiad.",
 };
-
 export default function ContactPage() {
   const contactInfo = [
     {

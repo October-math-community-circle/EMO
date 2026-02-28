@@ -1,7 +1,20 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Terms & Conditions",
+  description: "Terms & Conditions",
+  openGraph: {
+    title: "Terms & Conditions",
+    description: "Terms & Conditions",
+  },
+  twitter: {
+    title: "Terms & Conditions",
+    description: "Terms & Conditions",
+  },
+};
 export default function TermsPage() {
   return (
     <div className="min-h-screen bg-linear-to-br from-white via-zinc-50/50 to-white selection:bg-primary/20 overflow-x-hidden">

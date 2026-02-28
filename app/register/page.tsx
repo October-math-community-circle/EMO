@@ -6,7 +6,19 @@ import { db } from "../firebase";
 import { Competition } from "@/types/competition";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Register for Olympiad competitions",
+  description: "Register for Olympiad competitions",
+  openGraph: {
+    title: "Register for Olympiad competitions",
+    description: "Register for Olympiad competitions",
+  },
+  twitter: {
+    title: "Register for Olympiad competitions",
+    description: "Register for Olympiad competitions",
+  },
+};
 export default function CompetitionsListPage() {
   const [competitions, setCompetitions] = useState<Competition[]>([]);
   const [loading, setLoading] = useState(true);
