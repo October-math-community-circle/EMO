@@ -98,12 +98,10 @@ async function getUser(req: NextRequest) {
 export const config = {
   matcher: [
     "/dashboard/:path*",
-    "/register/registered",
-    "/register/:path",
+    "/register/:path*",
     "/auth/login",
     "/auth/register",
     "/auth/verify",
-    "/register",
     "/((?!api|_next/static|_next/image|favicon.ico).*)",
   ],
 };
