@@ -5,13 +5,15 @@ import { signin } from "@/app/server-actions/signin";
 import { signout } from "@/app/server-actions/signout";
 import { auth } from "./";
 import { User } from "@/types/auth";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import isProtectedRoute from "@/lib/utils/isProtectedRoute";
 export const FirebaseContext = createContext<{ user: User | null }>({
   user: null,
 });
 function Context({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
+  const pathname = usePathname();
   useEffect(() => {
     const unSub = onIdTokenChanged(auth, async (user) => {
       console.log({ user });
@@ -23,7 +25,10 @@ function Context({ children }: { children: React.ReactNode }) {
       } else {
         setUser(null);
         await signout();
-        router.refresh();
+        if (isProtectedRoute(pathname || window.location.pathname)) {
+          console.log("refreshing");
+          router.refresh();
+        }
       }
     });
 
