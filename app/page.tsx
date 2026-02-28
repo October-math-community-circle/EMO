@@ -3,19 +3,19 @@ import { Button } from "@/components/ui/Button";
 import { Card, CardContent } from "@/components/ui/Card";
 import type { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "Egyptian Math Olympiad",
-  description: "Egyptian Math Olympiad",
+  title: "October Math Community Circle",
+  description: "October Math Community Circle",
   openGraph: {
-    title: "Egyptian Math Olympiad",
-    description: "Egyptian Math Olympiad",
-    url: "https://egyptianmatholympiad.com",
-    siteName: "Egyptian Math Olympiad",
+    title: "October Math Community Circle",
+    description: "October Math Community Circle",
+    url: "https://www.octobermathcommunitycircle.org",
+    siteName: "October Math Community Circle",
     images: [
       {
-        url: "https://egyptianmatholympiad.com/logo.png",
+        url: "https://www.octobermathcommunitycircle.org/logo.png",
         width: 1200,
         height: 630,
-        alt: "Egyptian Math Olympiad",
+        alt: "October Math Community Circle",
       },
     ],
     locale: "en_US",
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Egyptian Math Olympiad",
-    description: "Egyptian Math Olympiad",
-    images: ["https://egyptianmatholympiad.com/logo.png"],
+    title: "October Math Community Circle",
+    description: "October Math Community Circle",
+    images: ["https://www.octobermathcommunitycircle.org/logo.png"],
   },
 };
 export default function Home() {

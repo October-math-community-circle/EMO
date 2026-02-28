@@ -8,11 +8,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "404 - Page Not Found",
     description: "404 - Page Not Found",
-    url: "https://egyptianmatholympiad.com",
+    url: "https://www.octobermathcommunitycircle.org",
     siteName: "Egyptian Math Olympiad",
     images: [
       {
-        url: "https://egyptianmatholympiad.com/logo.jpg",
+        url: "https://www.octobermathcommunitycircle.org/logo.jpg",
         width: 1200,
         height: 630,
         alt: "Egyptian Math Olympiad",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "404 - Page Not Found",
     description: "404 - Page Not Found",
-    images: ["https://egyptianmatholympiad.com/logo.jpg"],
+    images: ["https://www.octobermathcommunitycircle.org/logo.jpg"],
   },
 };
 export default function NotFound() {
