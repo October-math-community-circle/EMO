@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { FaFacebook, FaLinkedin, FaYoutube, FaEnvelope } from "react-icons/fa6";
 
 export const metadata = {
-  title: "Contact Us | Egyptian Math Olympiad",
+  title: "Contact Us | October Math Community Circle",
   description:
     "Get in touch with the October Math Community Circle for any inquiries about the Egyptian Math Olympiad.",
 };
