@@ -5,7 +5,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Mark, Registration } from "@/types/registration";
 import { RegistrationCard } from "./RegistrationCard";
-import { Timestamp } from "firebase-admin/firestore";
+import { FieldPath, Timestamp } from "firebase-admin/firestore";
+import { Competition } from "@/types/competition";
 export const dynamic = "force-dynamic";
 export default async function StudentDashboard() {
   const user = await getUser();
@@ -17,6 +18,20 @@ export default async function StudentDashboard() {
     createdAt: doc.createTime.toDate().toISOString(),
   })) as Registration[];
   const marks: Mark[] = [];
+  const competitions: Competition[] = (
+    await db
+      .collection("competitions")
+      .where(
+        FieldPath.documentId(),
+        "in",
+        registrations.map((reg) => reg.competitionId),
+      )
+      .get()
+  ).docs.map((doc) => ({
+    ...(doc.data() as Competition),
+    id: doc.id,
+    createdAt: doc.createTime.toDate().toISOString(),
+  })) as Competition[];
   for (const reg of registrations) {
     if (reg.marked) {
       const markDoc = await db
@@ -61,6 +76,11 @@ export default async function StudentDashboard() {
                 marks.find(
                   (mark) => mark.registrationId === reg.id,
                 ) as Mark | null
+              }
+              competition={
+                competitions.find(
+                  ({ id }) => id === reg.competitionId,
+                ) as Competition
               }
               key={reg.id}
               registration={reg}

@@ -13,6 +13,7 @@ import { Mark, Registration } from "@/types/registration";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/app/firebase";
 import { useRouter } from "next/navigation";
+import { Competition } from "@/types/competition";
 
 // Egyptian Governorates
 const GOVERNORATES = [
@@ -60,9 +61,11 @@ const registrationSchema = yup.object({
 export function RegistrationCard({
   registration,
   mark,
+  competition,
 }: {
   registration: Registration;
   mark: Mark | null;
+  competition: Competition | null;
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -112,7 +115,7 @@ export function RegistrationCard({
       <Card className="bg-white">
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-lg">OMCC 2026</CardTitle>
+            <CardTitle className="text-lg">{competition?.title}</CardTitle>
             <div className="flex items-center gap-2">
               <Badge variant={registration.expired ? "warning" : "success"}>
                 {registration.expired ? "Expired" : "Active"}
@@ -147,9 +150,7 @@ export function RegistrationCard({
             <div>
               <p className="text-muted-foreground">Mark</p>
               <p className="font-medium">
-                {registration.marked && mark != null
-                  ? mark.mark
-                  : "Not Marked"}
+                {registration.marked && mark != null ? mark.mark : "Not Marked"}
               </p>
             </div>
           </div>
