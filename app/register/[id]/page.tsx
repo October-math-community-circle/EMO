@@ -2,6 +2,7 @@ import { db } from "@/app/firebase-admin";
 import getUser from "@/lib/utils/getUser";
 import { notFound, redirect } from "next/navigation";
 import { CompetitionRegisterPage } from "./clientRegisterPage";
+import { Competition } from "@/types/competition";
 
 async function page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -21,7 +22,14 @@ async function page({ params }: { params: Promise<{ id: string }> }) {
   if (isNotRegistered == false) {
     return redirect("/register/registered");
   }
-  return <CompetitionRegisterPage params={{ id }} />;
+  const competitionData = competitionDocument.data() as Competition;
+
+  return (
+    <CompetitionRegisterPage
+      competitionTitle={competitionData.title}
+      params={{ id }}
+    />
+  );
 }
 
 export default page;
