@@ -22,10 +22,6 @@ export function Footer() {
                 OMCC
               </span>
             </div>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              The Egyptian Math Olympiad is the premier platform for fostering
-              mathematical excellence and critical thinking in Egypt.
-            </p>
           </div>
 
           <div>
@@ -33,22 +29,6 @@ export function Footer() {
               Competition
             </h3>
             <ul className="space-y-4">
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                >
-                  National Round
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Regional Rounds
-                </a>
-              </li>
               <li>
                 <a
                   href="#"
@@ -67,7 +47,7 @@ export function Footer() {
             <ul className="space-y-4">
               <li>
                 <a
-                  href="#"
+                  href="/auth/register"
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   Student Registration
@@ -79,14 +59,6 @@ export function Footer() {
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   Coach Portal
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Results
                 </a>
               </li>
             </ul>
@@ -136,7 +108,7 @@ export function Footer() {
         </div>
         <div className="mt-12 border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Egyptian Math Olympiad. All rights
+            &copy; {new Date().getFullYear()} October Math Community Circle. All rights
             reserved.
           </p>
           <div className="flex gap-6">

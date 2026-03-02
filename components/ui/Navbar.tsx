@@ -33,12 +33,12 @@ export function Navbar() {
     <nav
       className={`sticky top-0 z-50 w-full transition-all duration-300 border-b ${
         scrolled
-          ? "bg-white/90 backdrop-blur-md border-border py-2 shadow-sm"
-          : "bg-white border-transparent py-4"
+          ? "bg-white/90 backdrop-blur-md border-border shadow-sm"
+          : "bg-white border-transparent"
       }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center pb-2.5">
+        <div className="flex justify-between items-center py-2.5">
           {/* Logo Section */}
           <div className="flex items-center gap-3">
             <Link href="/" className="flex items-center gap-3 group">
@@ -65,11 +65,11 @@ export function Navbar() {
                   OMCC
                 </span>
                 <span
-                  className={`font-bold tracking-widest uppercase text-primary -mt-1 hidden sm:block transition-all duration-300 ${
+                  className={`font-bold tracking-widest uppercase text-black font-semibold -mt-1 transition-all duration-300 ${
                     scrolled ? "text-[0.5rem] opacity-80" : "text-[0.6rem]"
                   }`}
                 >
-                  Egyptian Math Olympiad
+                  October Math Community Circle
                 </span>
               </div>
             </Link>
@@ -77,7 +77,12 @@ export function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-8">
-            <div className="flex items-center gap-1 bg-zinc-100/50 p-1 rounded-full border border-zinc-200/50">
+            <div
+              className={`flex items-center gap-1 bg-zinc-100/50 p-1 rounded-full border border-zinc-200/50
+                transition-all duration-300
+              ${scrolled ? "scale-95" : ""}
+            `}
+            >
               {NAV_ITEMS.map((item) => {
                 const isActive = pathname === item.href;
                 return (
