@@ -10,6 +10,7 @@ export interface Registration {
   marked: boolean;
   competitionId: string;
   uid: string;
+  grade: number;
 }
 export interface Mark {
   id: string;

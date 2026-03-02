@@ -54,16 +54,22 @@ const schema = yup.object({
     .boolean()
     .oneOf([true], "You must agree to the terms and conditions")
     .required(),
+  grade: yup
+    .number()
+    .oneOf([10, 11], "You must be in grade 10 or 11 to participate")
+    .required("grade is required"),
 });
 
 type FormData = yup.InferType<typeof schema>;
 
 export function CompetitionRegisterPage({
   params,
+  competitionTitle,
 }: {
   params: {
     id: string;
   };
+  competitionTitle: string;
 }) {
   const [showSuccess, setShowSuccess] = useState(false);
   const [RegistrationId, setRegistrationId] = useState("");
@@ -81,6 +87,7 @@ export function CompetitionRegisterPage({
   const onSubmit = async ({
     governorate,
     nationalId,
+    grade,
   }: yup.InferType<typeof schema>) => {
     try {
       const docInfo = await addDoc(collection(db, "registrations"), {
@@ -91,6 +98,7 @@ export function CompetitionRegisterPage({
         expired: false,
         createdAt: serverTimestamp(),
         marked: false,
+        grade,
       });
       setRegistrationId(docInfo.id);
       setShowSuccess(true);
@@ -111,36 +119,9 @@ export function CompetitionRegisterPage({
           Registration Open
         </div>
         <h1 className="text-4xl sm:text-5xl font-black text-foreground mb-4 tracking-tight">
-          Egyptian Math Olympiad
+          {competitionTitle}
           <span className="block text-primary">Competition Registration</span>
         </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Join thousands of young mathematicians across Egypt and showcase your
-          problem-solving skills. Register now to participate in the prestigious
-          October Math Community Circle competition.
-        </p>
-      </div>
-
-      {/* Stats Section */}
-      <div className="max-w-4xl mx-auto mb-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {[
-            { value: "5000+", label: "Participants" },
-            { value: "27", label: "Governorates" },
-            { value: "500+", label: "Schools" },
-            { value: "₤50K", label: "In Prizes" },
-          ].map((stat) => (
-            <div
-              key={stat.label}
-              className="bg-white rounded-xl border border-border p-4 text-center shadow-sm hover:shadow-md transition-shadow"
-            >
-              <div className="text-2xl sm:text-3xl font-bold text-primary">
-                {stat.value}
-              </div>
-              <div className="text-sm text-muted-foreground">{stat.label}</div>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* Registration Form */}
@@ -156,7 +137,7 @@ export function CompetitionRegisterPage({
         </CardHeader>
 
         <CardContent className="p-6 sm:p-8">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 mt-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mt-4">
             {/* Personal Information Section */}
             <div>
               <div className="flex items-center gap-3 pb-2 border-b border-border">
@@ -216,8 +197,29 @@ export function CompetitionRegisterPage({
                   </p>
                 </div>
               </>
+              <div className="space-y-1">
+                <label className="text-sm font-medium leading-none">
+                  Grade
+                </label>
+                <select
+                  {...register("grade")}
+                  className="flex h-11 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                  disabled={isSubmitting}
+                >
+                  <option value="">Select your grade</option>
+                  <option value={10}>{10}</option>
+                  <option value={11}>{11}</option>
+                </select>
+                <p
+                  className="text-sm text-danger min-h-5"
+                  style={{
+                    visibility: errors.grade ? "visible" : "hidden",
+                  }}
+                >
+                  {errors.grade?.message}
+                </p>
+              </div>
             </div>
-
             {/* Additional Information Section */}
             <div className="space-y-6">
               <div className="flex items-center gap-3 pb-2 border-b border-border">
@@ -315,8 +317,7 @@ export function CompetitionRegisterPage({
 
           <p className="text-gray-600">
             Thank you for registering for the{" "}
-            <strong>Egyptian Math Olympiad</strong>! We have sent a confirmation
-            email with your registration details.
+            <strong>{competitionTitle}</strong>!
           </p>
           <div className="flex gap-2 flex-col">
             <Link href="/" className="flex-1">
