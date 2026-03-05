@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Verify Email",
   description: "Verify your email address for OMCC",
 };
+export const dynamic = "force-dynamic";
 
 export default async function Page({
   searchParams,
