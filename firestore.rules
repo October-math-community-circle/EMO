@@ -40,10 +40,8 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
     match /users/{userId} {
-      allow read:if isAdmin() || (isOwner(userId) && 
-      request.resource.data.email== request.auth.token.email);
-      allow write: if isAdmin() || (isOwner(userId) && 
-      request.resource.data.email== request.auth.token.email);
+      allow read, write:if isAdmin() || (isOwner(userId) && 
+      isStudent());
     }
   }
 }
