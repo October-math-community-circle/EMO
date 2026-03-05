@@ -13,5 +13,5 @@ const app = apps.length
         privateKey: process.env.firebaseKey,
       }),
     });
-export const db = getFirestore(app);
+export const db = getFirestore(app, "main");
 export const auth = getAuth(app);
