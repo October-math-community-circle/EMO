@@ -219,6 +219,32 @@ export function Navbar() {
           </div>
         </div>
       </div>
+
+      {/* Red Alert Support Banner - Redesigned for a cleaner look */}
+      <div className="bg-red-500 text-white py-2 relative border-t border-white/10 shadow-sm">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-center gap-3 text-center">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"></span>
+            </span>
+            <p className="text-[11px] sm:text-[13px] font-medium tracking-tight">
+              We are currently seeking an urgent sponsor to support our upcoming
+              olympiads.
+              <Link
+                href="/contact"
+                prefetch
+                className="ml-2.5 font-bold hover:underline transition-all inline-flex items-center gap-1 group"
+              >
+                Partner with us
+                <span className="group-hover:translate-x-0.5 transition-transform">
+                  →
+                </span>
+              </Link>
+            </p>
+          </div>
+        </div>
+      </div>
     </nav>
   );
 }
