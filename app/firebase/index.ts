@@ -19,7 +19,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const db = getFirestore(app);
+export const db = getFirestore(app, "main");
 export const storage = getStorage(app);
 export const realtimeDb = getDatabase(app);
 // connect to emulators when running in dev mode only
