@@ -13,7 +13,12 @@ import { ToastContainer, toast, TypeOptions } from "react-toastify";
 import { Modal } from "@/components/ui/Modal";
 import { useRouter } from "next/navigation";
 import { db, auth } from "@/app/firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  Timestamp,
+} from "firebase/firestore";
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
@@ -23,6 +28,7 @@ const STATUSES = [
   { value: "in_progress", label: "In Progress" },
   { value: "completed", label: "Completed" },
   { value: "cancelled", label: "Cancelled" },
+  { value: "closed", label: "Closed" },
 ] as const;
 
 // ─── Validation ──────────────────────────────────────────────────────────────
@@ -46,6 +52,12 @@ const schema = yup.object({
     .string()
     .required("Status is required")
     .oneOf(["draft", "open", "in_progress", "completed", "cancelled"]),
+  startDate: yup.string().required("Start Date is required"),
+  duration: yup
+    .number()
+    .typeError("Duration must be a number")
+    .required("Duration is required")
+    .min(1, "Duration must be at least 1 hour"),
   prizeInfo: yup.string().default(""),
 });
 
@@ -54,7 +66,6 @@ type FormData = yup.InferType<typeof schema>;
 // ─── Page ─────────────-──────────────────────────────────────────────────────
 
 export default function CreateCompetitionPage() {
-  const [submitted, setSubmitted] = useState(false);
   const [isOnline, setIsOnline] = useState(false);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
   const [createdCompetitionId, setCreatedCompetitionId] = useState<
@@ -87,10 +98,17 @@ export default function CreateCompetitionPage() {
   const onSubmit = async (data: FormData) => {
     try {
       const createdBy = auth.currentUser?.uid || "admin";
+
+      // Parse startDate as Egyptian Time (UTC+2) explicitly
+      const start = new Date(`${data.startDate}+02:00`);
+      // Compute endDate in milliseconds (duration is in hours)
+      const end = new Date(start.getTime() + data.duration * 60 * 60 * 1000);
+
       const docRef = await addDoc(collection(db, "competitions"), {
         ...data,
+        startDate: Timestamp.fromDate(start),
+        endDate: Timestamp.fromDate(end),
         location: isOnline ? "Online" : data.location,
-        isOnline,
         maxParticipants: data.maxParticipants || 0,
         createdBy,
         createdAt: serverTimestamp(),
@@ -99,7 +117,6 @@ export default function CreateCompetitionPage() {
       setCreatedCompetitionId(docRef.id);
       setIsSuccessModalOpen(true);
       reset();
-      setSubmitted(true);
     } catch (error) {
       console.error("Error creating competition:", error);
       showToast("error", "Failed to create competition");
@@ -232,6 +249,46 @@ export default function CreateCompetitionPage() {
                       }}
                     >
                       {errors.status?.message}
+                    </p>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-sm font-medium leading-none">
+                      Start Date (Egyptian Time) *
+                    </label>
+                    <Input
+                      type="datetime-local"
+                      {...register("startDate")}
+                      disabled={isSubmitting}
+                    />
+                    <p
+                      className="text-sm text-danger min-h-5"
+                      style={{
+                        visibility: errors.startDate ? "visible" : "hidden",
+                      }}
+                    >
+                      {errors.startDate?.message}
+                    </p>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-sm font-medium leading-none">
+                      Duration (in hours) *
+                    </label>
+                    <Input
+                      type="number"
+                      step="0.5"
+                      placeholder="e.g. 2"
+                      {...register("duration")}
+                      disabled={isSubmitting}
+                    />
+                    <p
+                      className="text-sm text-danger min-h-5"
+                      style={{
+                        visibility: errors.duration ? "visible" : "hidden",
+                      }}
+                    >
+                      {errors.duration?.message}
                     </p>
                   </div>
 
@@ -376,20 +433,22 @@ export default function CreateCompetitionPage() {
                     </p>
                   </div>
 
-                  {<div className="space-y-1 hidden">
-                    <label className="text-sm font-medium leading-none">
-                      Prize Information{" "}
-                      <span className="text-muted-foreground font-normal">
-                        (optional)
-                      </span>
-                    </label>
-                    <Input
-                      type="text"
-                      placeholder='e.g. "₤50,000 total prizes"'
-                      {...register("prizeInfo")}
-                      disabled={isSubmitting}
-                    />
-                  </div>}
+                  {
+                    <div className="space-y-1 hidden">
+                      <label className="text-sm font-medium leading-none">
+                        Prize Information{" "}
+                        <span className="text-muted-foreground font-normal">
+                          (optional)
+                        </span>
+                      </label>
+                      <Input
+                        type="text"
+                        placeholder='e.g. "₤50,000 total prizes"'
+                        {...register("prizeInfo")}
+                        disabled={isSubmitting}
+                      />
+                    </div>
+                  }
                 </div>
               </div>
 
@@ -496,7 +555,6 @@ export default function CreateCompetitionPage() {
                 onClick={() => {
                   setIsSuccessModalOpen(false);
                   setCreatedCompetitionId(null);
-                  setSubmitted(false);
                   setIsOnline(false);
                 }}
                 className="w-full sm:w-auto"
