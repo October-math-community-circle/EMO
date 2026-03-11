@@ -6,16 +6,18 @@ export type CompetitionStatus =
   | "open"
   | "in_progress"
   | "completed"
+  | "closed"
   | "cancelled";
 
 export interface Competition {
   id?: string;
   title: string;
   description: string;
-  location?: string;
-  isOnline: boolean;
+  location: "Online" | string;
   maxParticipants?: number;
   status: CompetitionStatus;
+  startDate: ClientTimestamp | ServerTimestamp | string;
+  endDate: ClientTimestamp | ServerTimestamp | string;
   createdAt: ClientTimestamp | ServerTimestamp | string;
   createdBy: string;
 }

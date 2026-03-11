@@ -29,11 +29,22 @@ export default async function StudentDashboard() {
               registrations.map((reg) => reg.competitionId),
             )
             .get()
-        ).docs.map((doc) => ({
-          ...(doc.data() as Competition),
-          id: doc.id,
-          createdAt: doc.createTime.toDate().toISOString(),
-        }))
+        ).docs.map((doc) => {
+          const competitionData = doc.data() as Competition;
+          return {
+            ...(competitionData as Competition),
+            id: doc.id,
+            createdAt: (competitionData.createdAt as Timestamp)
+              .toDate()
+              .toISOString(),
+            startDate: (competitionData.startDate as Timestamp)
+              .toDate()
+              .toISOString(),
+            endDate: (competitionData.endDate as Timestamp)
+              .toDate()
+              .toISOString(),
+          };
+        })
       : []
   ) as Competition[];
   for (const reg of registrations) {

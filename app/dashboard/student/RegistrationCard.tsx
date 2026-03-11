@@ -120,7 +120,7 @@ export function RegistrationCard({
               <Badge variant={registration.expired ? "warning" : "success"}>
                 {registration.expired ? "Expired" : "Active"}
               </Badge>
-              {!registration.expired && (
+              {competition?.status === "open" && !registration.expired ? (
                 <Button
                   disabled={isSubmitting || registration.marked}
                   variant="outline"
@@ -129,7 +129,7 @@ export function RegistrationCard({
                 >
                   Edit
                 </Button>
-              )}
+              ) : null}
             </div>
           </div>
         </CardHeader>

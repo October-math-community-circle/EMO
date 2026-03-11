@@ -27,7 +27,11 @@ export default async function Page({ params }: PageProps) {
         id: competitionDoc.id,
         createdAt: (competitionData.createdAt as Timestamp)
           ?.toDate()
-          .toString(),
+          .toISOString(),
+        startDate: (competitionData.startDate as Timestamp)
+          .toDate()
+          .toISOString(),
+        endDate: (competitionData.endDate as Timestamp).toDate().toISOString(),
       }}
     />
   );

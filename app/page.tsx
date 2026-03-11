@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent } from "@/components/ui/Card";
 import type { Metadata } from "next";
+import { forbidden } from "next/navigation";
 export const metadata: Metadata = {
   title: "October Math Community Circle",
   description: "October Math Community Circle",

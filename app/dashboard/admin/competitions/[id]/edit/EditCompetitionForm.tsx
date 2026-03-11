@@ -12,8 +12,9 @@ import { Input } from "@/components/ui/Input";
 import MapPicker from "@/components/ui/MapPicker";
 import { ToastContainer, toast, TypeOptions } from "react-toastify";
 import { db } from "@/app/firebase";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, Timestamp } from "firebase/firestore";
 import { Competition } from "@/types/competition";
+import { Modal } from "@/components/ui/Modal";
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
@@ -23,6 +24,7 @@ const STATUSES = [
   { value: "in_progress", label: "In Progress" },
   { value: "completed", label: "Completed" },
   { value: "cancelled", label: "Cancelled" },
+  { value: "closed", label: "Closed" },
 ] as const;
 
 // ─── Validation ──────────────────────────────────────────────────────────────
@@ -46,6 +48,12 @@ const schema = yup.object({
     .string()
     .required("Status is required")
     .oneOf(["draft", "open", "in_progress", "completed", "cancelled"]),
+  startDate: yup.string().required("Start Date is required"),
+  duration: yup
+    .number()
+    .typeError("Duration must be a number")
+    .required("Duration is required")
+    .min(1, "Duration must be at least 1 hour"),
   prizeInfo: yup.string().default(""),
 });
 
@@ -60,9 +68,8 @@ export default function EditCompetitionForm({
 }) {
   const router = useRouter();
 
-  const [isOnline, setIsOnline] = useState(
-    initialData.isOnline || initialData.location === "Online",
-  );
+  const [isOnline, setIsOnline] = useState(initialData.location === "Online");
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
   const {
     register,
@@ -80,6 +87,18 @@ export default function EditCompetitionForm({
         initialData.location === "Online" ? "" : initialData.location || "",
       maxParticipants: initialData.maxParticipants || 0,
       status: initialData.status || "draft",
+      startDate: initialData.startDate
+        ? new Date(initialData.startDate as string).toISOString().slice(0, 16)
+        : "",
+      duration:
+        initialData.startDate && initialData.endDate
+          ? Math.round(
+              ((new Date(initialData.endDate as string).getTime() -
+                new Date(initialData.startDate as string).getTime()) /
+                (60 * 60 * 1000)) *
+                100,
+            ) / 100
+          : undefined,
     },
   });
 
@@ -92,13 +111,21 @@ export default function EditCompetitionForm({
   const onSubmit = async (data: FormData) => {
     try {
       const docRef = doc(db, "competitions", id);
+
+      // Parse startDate as Egyptian Time (UTC+2) explicitly
+      const start = new Date(`${data.startDate}+02:00`);
+      // Compute endDate in milliseconds (duration is in hours)
+      const end = new Date(start.getTime() + data.duration * 60 * 60 * 1000);
+
       await updateDoc(docRef, {
         ...data,
+        startDate: Timestamp.fromDate(start),
+        endDate: Timestamp.fromDate(end),
         location: isOnline ? "Online" : data.location,
-        isOnline,
         maxParticipants: data.maxParticipants || 0,
       });
       showToast("success", "Competition updated successfully!");
+      setIsSuccessModalOpen(true);
     } catch (error) {
       console.error("Error updating competition:", error);
       showToast("error", "Failed to update competition");
@@ -229,6 +256,46 @@ export default function EditCompetitionForm({
                       }}
                     >
                       {errors.status?.message}
+                    </p>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-sm font-medium leading-none">
+                      Start Date (Egyptian Time) *
+                    </label>
+                    <Input
+                      type="datetime-local"
+                      {...register("startDate")}
+                      disabled={isSubmitting}
+                    />
+                    <p
+                      className="text-sm text-danger min-h-5"
+                      style={{
+                        visibility: errors.startDate ? "visible" : "hidden",
+                      }}
+                    >
+                      {errors.startDate?.message}
+                    </p>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-sm font-medium leading-none">
+                      Duration (in hours) *
+                    </label>
+                    <Input
+                      type="number"
+                      step="0.5"
+                      placeholder="e.g. 2"
+                      {...register("duration")}
+                      disabled={isSubmitting}
+                    />
+                    <p
+                      className="text-sm text-danger min-h-5"
+                      style={{
+                        visibility: errors.duration ? "visible" : "hidden",
+                      }}
+                    >
+                      {errors.duration?.message}
                     </p>
                   </div>
 
@@ -454,6 +521,58 @@ export default function EditCompetitionForm({
           </CardContent>
         </Card>
       </div>
+
+      <Modal
+        isOpen={isSuccessModalOpen}
+        onClose={() => {
+          setIsSuccessModalOpen(false);
+          router.push("/dashboard/admin");
+        }}
+        title="Competition Updated!"
+      >
+        <div className="space-y-6">
+          <div className="flex flex-col items-center justify-center p-4">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+              <svg
+                className="w-8 h-8 text-green-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </div>
+            <p className="text-center text-gray-600">
+              The competition has been successfully updated and saved.
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => setIsSuccessModalOpen(false)}
+              className="w-full"
+            >
+              Continue Editing
+            </Button>
+            <Link href={"/dashboard/admin"} prefetch>
+              <Button
+                type="button"
+                onClick={() => setIsSuccessModalOpen(false)}
+                className="w-full"
+              >
+                Go to Competitions List
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }

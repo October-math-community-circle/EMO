@@ -1,15 +1,15 @@
 import { db } from "@/app/firebase-admin";
 import getUser from "@/lib/utils/getUser";
-import { notFound, redirect } from "next/navigation";
+import { forbidden, notFound, redirect } from "next/navigation";
 import { CompetitionRegisterPage } from "./clientRegisterPage";
 import { Competition } from "@/types/competition";
 
+import { FieldPath, Timestamp } from "firebase-admin/firestore";
+
 async function page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  console.log({ id });
-
   const user = await getUser();
-  if (user?.role !== "student") redirect("/");
+  if (user?.role !== "student") forbidden();
   const competitionDocument = await db.collection("competitions").doc(id).get();
   if (competitionDocument.exists == false) return notFound();
   const isNotRegistered = (
@@ -27,7 +27,13 @@ async function page({ params }: { params: Promise<{ id: string }> }) {
   return (
     <CompetitionRegisterPage
       competitionTitle={competitionData.title}
-      params={{ id }}
+      competitionStartDate={(competitionData.startDate as Timestamp)
+        ?.toDate()
+        ?.toISOString()}
+      competitionEndDate={(competitionData.endDate as Timestamp)
+        ?.toDate()
+        ?.toISOString()}
+      id={id}
     />
   );
 }
