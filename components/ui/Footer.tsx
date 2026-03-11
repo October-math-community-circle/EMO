@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import { FaLinkedin } from "react-icons/fa6";
@@ -108,8 +109,8 @@ export function Footer() {
         </div>
         <div className="mt-12 border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} October Math Community Circle. All rights
-            reserved.
+            &copy; {new Date().getFullYear()} October Math Community Circle. All
+            rights reserved.
           </p>
           <div className="flex gap-6">
             <span className="text-sm text-muted-foreground hover:text-foreground cursor-pointer">
