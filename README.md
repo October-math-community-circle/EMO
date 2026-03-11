@@ -1,6 +1,6 @@
 # 🎓 EMO - Egyptian Math Olympiad Platform
 
-**EMO** (Egyptian Math Olympiad), also known as the **October Math Community Circle (OMCC)**, is a comprehensive web platform designed to manage and facilitate Egypt's premier mathematical academic competition. The platform connects students, coaches, and administrators in a unified ecosystem to promote mathematical excellence and prepare participants for international standards like the IMO (International Mathematical Olympiad).
+**EMO** (Egyptian Math Olympiad), also known as the **Egypt Mathematical Foundation (EMF)**, is a comprehensive web platform designed to manage and facilitate Egypt's premier mathematical academic competition. The platform connects students, coaches, and administrators in a unified ecosystem to promote mathematical excellence and prepare participants for international standards like the IMO (International Mathematical Olympiad).
 
 ## 🌟 Overview
 
@@ -187,7 +187,7 @@ We welcome contributions from the community! Please ensure your code follows the
 
 ## 📧 Contact & Support
 
-For questions, issues, or support, please contact the OMCC team or open an issue in this repository.
+For questions, issues, or support, please contact the EMF team or open an issue in this repository.
 
 ---
 

@@ -3,7 +3,7 @@ import LoginPage from "./loginClientPage";
 
 export const metadata: Metadata = {
   title: "Login",
-  description: "Login to the OMCC",
+  description: "Login to the EMF",
 };
 function page() {
   return <LoginPage />;

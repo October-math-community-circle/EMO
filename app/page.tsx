@@ -4,19 +4,19 @@ import { Card, CardContent } from "@/components/ui/Card";
 import type { Metadata } from "next";
 import { forbidden } from "next/navigation";
 export const metadata: Metadata = {
-  title: "October Math Community Circle",
-  description: "October Math Community Circle",
+  title: "Egypt Mathematical Foundation",
+  description: "Egypt Mathematical Foundation",
   openGraph: {
-    title: "October Math Community Circle",
-    description: "October Math Community Circle",
-    url: "https://www.octobermathcommunitycircle.org",
-    siteName: "October Math Community Circle",
+    title: "Egypt Mathematical Foundation",
+    description: "Egypt Mathematical Foundation",
+    url: "https://www.egyptmathematicalfoundation.org",
+    siteName: "Egypt Mathematical Foundation",
     images: [
       {
-        url: "https://www.octobermathcommunitycircle.org/logo.png",
+        url: "https://www.egyptmathematicalfoundation.org/logo.png",
         width: 1200,
         height: 630,
-        alt: "October Math Community Circle",
+        alt: "Egypt Mathematical Foundation",
       },
     ],
     locale: "en_US",
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "October Math Community Circle",
-    description: "October Math Community Circle",
-    images: ["https://www.octobermathcommunitycircle.org/logo.png"],
+    title: "Egypt Mathematical Foundation",
+    description: "Egypt Mathematical Foundation",
+    images: ["https://www.egyptmathematicalfoundation.org/logo.png"],
   },
 };
 export default function Home() {
@@ -53,7 +53,7 @@ export default function Home() {
               </h1>
 
               <p className="text-xl text-muted-foreground mb-10 max-w-lg leading-relaxed">
-                OMCC is a national academic initiative dedicated to organizing,
+                EMF is a national academic initiative dedicated to organizing,
                 developing, and advancing Egypt’s participation in international
                 scientific Olympiads.
               </p>
@@ -132,7 +132,7 @@ export default function Home() {
               What We Do
             </h2>
             <p className="text-lg text-muted-foreground">
-              OMCC supports preparation and representation in leading global
+              EMF supports preparation and representation in leading global
               competitions through a comprehensive framework.
             </p>
           </div>
@@ -230,7 +230,7 @@ export default function Home() {
               Get Involved
             </h2>
             <p className="text-lg text-muted-foreground">
-              OMCC welcomes all who wish to contribute to scientific excellence
+              EMF welcomes all who wish to contribute to scientific excellence
               in Egypt.
             </p>
           </div>
@@ -296,7 +296,7 @@ export default function Home() {
                     <div className="h-48 w-48 rounded-full border border-primary/10 flex items-center justify-center">
                       <div className="h-32 w-32 rounded-full bg-primary/20 blur-2xl"></div>
                       <span className="text-6xl font-bold text-primary opacity-50 absolute">
-                        OMCC
+                        EMF
                       </span>
                     </div>
                   </div>

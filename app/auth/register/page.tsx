@@ -3,7 +3,7 @@ import RegisterClientPage from "./RegisterClientPage";
 
 export const metadata: Metadata = {
   title: "Register",
-  description: "Register for the OMCC",
+  description: "Register for the EMF",
 };
 function page() {
   return <RegisterClientPage />;

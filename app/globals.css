@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  /* OMCC Premium Theme (Zinc & Red) */
+  /* EMF Premium Theme (Zinc & Red) */
   --primary: #c62828;
   /* Professional Deep Red */
   --primary-foreground: #ffffff;
@@ -72,7 +72,11 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  font-family:
+    var(--font-geist-sans),
+    system-ui,
+    -apple-system,
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   /* Subtle dot pattern background */
   background-image: radial-gradient(#e4e4e7 1px, transparent 1px);

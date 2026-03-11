@@ -1,5 +1,8 @@
 {
   "projects": {
     "default": "omcc-5f0b2"
-  }
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }

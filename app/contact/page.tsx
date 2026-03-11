@@ -2,17 +2,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { FaFacebook, FaLinkedin, FaYoutube, FaEnvelope } from "react-icons/fa6";
 
 export const metadata = {
-  title: "Contact Us | October Math Community Circle",
+  title: "Contact Us | Egypt Mathematical Foundation",
   description:
-    "Get in touch with the October Math Community Circle for any inquiries about the Egyptian Math Olympiad.",
+    "Get in touch with the Egypt Mathematical Foundation for any inquiries about the Egyptian Math Olympiad.",
 };
 export default function ContactPage() {
   const contactInfo = [
     {
       title: "Email",
-      value: "octobermathcommunitycircle@proton.me",
+      value: "admin@egyptmathematicalfoundation.org",
       icon: <FaEnvelope className="w-8 h-8 text-primary font-bold" />,
-      link: "mailto:octobermathcommunitycircle@proton.me",
+      link: "mailto:admin@egyptmathematicalfoundation.org",
       description: "Our primary way of communication for official inquiries.",
     },
     {
@@ -25,19 +25,19 @@ export default function ContactPage() {
     },
     {
       title: "LinkedIn",
-      value: "October Math Community Circle",
+      value: "Egypt Mathematical Foundation",
       icon: <FaLinkedin className="w-8 h-8 text-blue-700" />,
       link: "https://eg.linkedin.com/company/october-math-community-circle",
       description:
         "Connect with us professionally and stay updated on our corporate news.",
     },
-    {
+  /*   {
       title: "YouTube",
       value: "@OctoberMathCommunityCircle",
       icon: <FaYoutube className="w-8 h-8 text-red-600" />,
       link: "https://www.youtube.com/@OctoberMathCommunityCircle",
       description: "Watch our educational content and competition highlights.",
-    },
+    }, */
   ];
 
   return (
@@ -119,7 +119,7 @@ export default function ContactPage() {
             href="/about"
             className="px-6 py-2 rounded-full border border-border hover:border-primary/30 hover:bg-primary/5 transition-all text-sm font-medium"
           >
-            About OMCC
+            About EMF
           </a>
           <a
             href="/"

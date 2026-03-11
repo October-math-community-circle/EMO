@@ -14,13 +14,13 @@ export function Footer() {
               <div className="relative h-10 w-10 mr-3 rounded-full overflow-hidden border border-border">
                 <Image
                   src="/logo.jpg"
-                  alt="OMCC"
+                  alt="EMF"
                   fill
                   className="object-cover"
                 />
               </div>
               <span className="text-2xl font-black tracking-tight text-foreground">
-                OMCC
+                EMF
               </span>
             </div>
           </div>
@@ -72,10 +72,10 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="text-sm text-muted-foreground">
                 <a
-                  href="mailto:octobermathcommunitycircle@proton.me"
+                  href="mailto:admin@egyptmathematicalfoundation.org"
                   target="_blank"
                 >
-                  octobermathcommunitycircle@proton.me
+                  admin@egyptmathematicalfoundation.org
                 </a>
               </li>
               <li className="flex gap-4 mt-4">
@@ -109,7 +109,7 @@ export function Footer() {
         </div>
         <div className="mt-12 border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} October Math Community Circle. All
+            &copy; {new Date().getFullYear()} Egypt Mathematical Foundation. All
             rights reserved.
           </p>
           <div className="flex gap-6">

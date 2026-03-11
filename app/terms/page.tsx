@@ -170,10 +170,10 @@ export default function TermsPage() {
           <p className="text-muted-foreground">
             Questions about these terms? Reach out to our team at{" "}
             <a
-              href="mailto:octobermathcommunitycircle@proton.me"
+              href="mailto:admin@egyptmathematicalfoundation.org"
               className="text-primary font-bold hover:underline"
             >
-              octobermathcommunitycircle@proton.me
+              admin@egyptmathematicalfoundation.org
             </a>
           </p>
         </div>
