@@ -15,6 +15,7 @@ export interface Registration {
 export interface Mark {
   id: string;
   registrationId: string;
+  competitionId: string;
   mark: number;
   markedAt: ClientTimestamp | ServerTimestamp | string;
   markedBy: string;

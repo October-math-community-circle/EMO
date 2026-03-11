@@ -1,21 +1,21 @@
 "use server";
 
 import { db } from "@/app/firebase-admin";
+import { serverActionWrapperRESPONSE } from "@/lib/utils/serverActionWrapper";
 import { revalidatePath } from "next/cache";
 
-export async function updateRegistration(
+const updateRegistrationInternal = async (
   registrationId: string,
   data: { governorate: string; nationalId: string },
-) {
-  try {
-    await db.collection("registrations").doc(registrationId).update({
-      governorate: data.governorate,
-      nationalId: data.nationalId,
-    });
-    revalidatePath("/dashboard/student");
-    return { success: true };
-  } catch (error) {
-    console.error("Error updating registration:", error);
-    return { success: false, error: "Failed to update registration" };
-  }
-}
+) => {
+  await db.collection("registrations").doc(registrationId).update({
+    governorate: data.governorate,
+    nationalId: data.nationalId,
+  });
+  revalidatePath("/dashboard/student");
+};
+export const updateRegistration = serverActionWrapperRESPONSE(
+  updateRegistrationInternal,
+  null as unknown as void,
+  "Error updating registration",
+);

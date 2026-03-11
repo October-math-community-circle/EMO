@@ -63,13 +63,15 @@ const schema = yup.object({
 type FormData = yup.InferType<typeof schema>;
 
 export function CompetitionRegisterPage({
-  params,
+  id,
   competitionTitle,
+  competitionStartDate,
+  competitionEndDate,
 }: {
-  params: {
-    id: string;
-  };
+  id: string;
   competitionTitle: string;
+  competitionStartDate?: string;
+  competitionEndDate?: string;
 }) {
   const [showSuccess, setShowSuccess] = useState(false);
   const [RegistrationId, setRegistrationId] = useState("");
@@ -94,7 +96,7 @@ export function CompetitionRegisterPage({
         governorate,
         nationalId,
         uid: user?.uid,
-        competitionId: params.id,
+        competitionId: id,
         expired: false,
         createdAt: serverTimestamp(),
         marked: false,
@@ -122,6 +124,52 @@ export function CompetitionRegisterPage({
           {competitionTitle}
           <span className="block text-primary">Competition Registration</span>
         </h1>
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 text-sm text-muted-foreground">
+          <span className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-xs border border-border">
+            <svg
+              className="w-4 h-4 text-primary"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
+            </svg>
+            {competitionStartDate
+              ? new Date(competitionStartDate).toLocaleString([], {
+                  dateStyle: "medium",
+                  timeStyle: "short",
+                })
+              : "Date pending"}
+          </span>
+
+          <span className="flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-xs border border-border">
+            <svg
+              className="w-4 h-4 text-primary"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            {competitionStartDate && competitionEndDate
+              ? `${Math.round(
+                  (new Date(competitionEndDate).getTime() -
+                    new Date(competitionStartDate).getTime()) /
+                    (60 * 60 * 1000),
+                )} hours duration`
+              : "Duration pending"}
+          </span>
+        </div>
       </div>
 
       {/* Registration Form */}

@@ -19,19 +19,34 @@ export default async function StudentDashboard() {
   })) as Registration[];
   const marks: Mark[] = [];
   const competitions: Competition[] = (
-    await db
-      .collection("competitions")
-      .where(
-        FieldPath.documentId(),
-        "in",
-        registrations.map((reg) => reg.competitionId),
-      )
-      .get()
-  ).docs.map((doc) => ({
-    ...(doc.data() as Competition),
-    id: doc.id,
-    createdAt: doc.createTime.toDate().toISOString(),
-  })) as Competition[];
+    registrations.length > 0
+      ? (
+          await db
+            .collection("competitions")
+            .where(
+              FieldPath.documentId(),
+              "in",
+              registrations.map((reg) => reg.competitionId),
+            )
+            .get()
+        ).docs.map((doc) => {
+          const competitionData = doc.data() as Competition;
+          return {
+            ...(competitionData as Competition),
+            id: doc.id,
+            createdAt: (competitionData.createdAt as Timestamp)
+              .toDate()
+              .toISOString(),
+            startDate: (competitionData.startDate as Timestamp)
+              .toDate()
+              .toISOString(),
+            endDate: (competitionData.endDate as Timestamp)
+              .toDate()
+              .toISOString(),
+          };
+        })
+      : []
+  ) as Competition[];
   for (const reg of registrations) {
     if (reg.marked) {
       const markDoc = await db
