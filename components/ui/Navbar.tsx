@@ -223,7 +223,7 @@ export function Navbar() {
       {/* Red Alert Support Banner - Redesigned for a cleaner look */}
       <div className="bg-red-500 text-white py-2 relative border-t border-white/10 shadow-sm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center gap-3 text-center">
+          {/*  <div className="flex items-center justify-center gap-3 text-center">
             <span className="relative flex h-1.5 w-1.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
               <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"></span>
@@ -241,6 +241,12 @@ export function Navbar() {
                   →
                 </span>
               </Link>
+            </p>
+          </div> */}
+          <div className="flex items-center justify-center gap-3 text-center mt-0.5">
+            <p className="font-bold text-[11px] sm:text-[13px]  tracking-tight ">
+              We are the same people, the same plans, and everything is fine. we
+              just changed the name of the organization.
             </p>
           </div>
         </div>
