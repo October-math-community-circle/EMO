@@ -18,6 +18,7 @@ import { useRouter } from "next/navigation";
 import { FirebaseAuthError } from "firebase-admin/auth";
 import authRedirect from "@/app/auth/authRedirect";
 import { assignUserRole } from "./assignUserRole";
+import { createUserDoc } from "./createUserDoc";
 // create a yup schema for form validation with hook form using yup
 const capitalLettersRegex = /[A-Z]/g;
 const smallLetterRegex = /[a-z]/g;
@@ -73,21 +74,25 @@ function RegisterPage({}, ref: ForwardedRef<boolean>) {
         email,
         password,
       );
-      const userDoc = doc(db, "users", userCredential.user.uid);
       await assignUserRole(userCredential.user.uid);
-      await setDoc(userDoc, {
-        fullName,
-        email,
-        phone,
-        school,
-        dob,
-        createdAt: serverTimestamp(),
-        type: "student",
-      });
+      const jwt = await userCredential.user.getIdToken(true);
       // Show success modal
       setRegisteredEmail(email);
       setShowSuccess(true);
       await Promise.allSettled([
+        createUserDoc(
+          {
+            fullName,
+            email,
+            phone,
+            school,
+            dob: dob.toISOString() as string,
+            type: "student",
+            createdAt: "",
+          },
+          userCredential.user.uid,
+          jwt,
+        ),
         sendEmailVerification(userCredential.user),
         userCredential.user.reload(),
       ]);
