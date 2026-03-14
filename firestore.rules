@@ -28,7 +28,8 @@ service cloud.firestore {
     // Registration rules
     match /registrations/{registrationId} {
       allow read: if isAdmin() || isOwner(resource.data.uid);
-      allow create: if isStudent() && request.resource.data.uid == request.auth.uid;
+      allow create: if isStudent() && request.resource.data.uid == request.auth.uid 
+      && get(/databases/$(database)/documents/competitions/$(request.resource.data.competitionId)).data.status =="open" ;
       allow update: if isAdmin() || (isOwner(resource.data.uid) && resource.data.marked == false);
       allow delete: if isAdmin();
     }
