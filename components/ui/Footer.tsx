@@ -108,10 +108,18 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-12 border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Egypt Mathematical Foundation. All
-            rights reserved.
-          </p>
+          <div className="flex flex-col items-center md:items-start md:gap-1">
+            <p className="text-sm text-muted-foreground">
+              &copy; {new Date().getFullYear()} Egypt Mathematical Foundation. All
+              rights reserved.
+            </p>
+            <p className="text-sm text-muted-foreground flex items-center gap-1 mt-1">
+              Developed with ❤️ by
+              <a href="https://yassin-samir.vercel.app" target="_blank" className="underline font-medium text-foreground hover:text-primary transition-colors">
+                Yassin Samir
+              </a>
+            </p>
+          </div>
           <div className="flex gap-6">
             <span className="text-sm text-muted-foreground hover:text-foreground cursor-pointer">
               Privacy
