@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  /* EMF Premium Theme (Zinc & Red) */
-  --primary: #c62828;
-  /* Professional Deep Red */
+  /* AAST Blue Theme */
+  --primary: rgba(0, 57, 143, 0.847);
+  /* AAST University Blue */
   --primary-foreground: #ffffff;
 
   --secondary: #18181b;
@@ -38,7 +38,7 @@
   --border: #e4e4e7;
   /* Zinc 200 */
   --input: #e4e4e7;
-  --ring: #c62828;
+  --ring: #2059a0;
 
   --radius: 0.75rem;
   /* 12px rounded corners */

@@ -283,7 +283,7 @@ function RegisterPage({}, ref: ForwardedRef<boolean>) {
       >
         <div className="space-y-2">
           <p className="text-lg">
-            Welcome to the <strong>EMF</strong>!
+            Welcome to the <strong>EGSO</strong>!
           </p>
           <p className="text-gray-600">
             Your account has been created successfully with email:{" "}

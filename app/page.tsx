@@ -4,19 +4,19 @@ import { Card, CardContent } from "@/components/ui/Card";
 import type { Metadata } from "next";
 import { forbidden } from "next/navigation";
 export const metadata: Metadata = {
-  title: "Egypt Mathematical Foundation",
-  description: "Egypt Mathematical Foundation",
+  title: "EG Science Olympiad",
+  description: "EG Science Olympiad",
   openGraph: {
-    title: "Egypt Mathematical Foundation",
-    description: "Egypt Mathematical Foundation",
+    title: "EG Science Olympiad",
+    description: "EG Science Olympiad",
     url: "https://www.egyptmathematicalfoundation.org",
-    siteName: "Egypt Mathematical Foundation",
+    siteName: "EG Science Olympiad",
     images: [
       {
         url: "https://www.egyptmathematicalfoundation.org/logo.png",
         width: 1200,
         height: 630,
-        alt: "Egypt Mathematical Foundation",
+        alt: "EG Science Olympiad",
       },
     ],
     locale: "en_US",
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Egypt Mathematical Foundation",
-    description: "Egypt Mathematical Foundation",
+    title: "EG Science Olympiad",
+    description: "EG Science Olympiad",
     images: ["https://www.egyptmathematicalfoundation.org/logo.png"],
   },
 };
@@ -53,7 +53,7 @@ export default function Home() {
               </h1>
 
               <p className="text-xl text-muted-foreground mb-10 max-w-lg leading-relaxed">
-                EMF is a national academic initiative dedicated to organizing,
+                EGSO is a national academic initiative dedicated to organizing,
                 developing, and advancing Egypt’s participation in international
                 scientific Olympiads.
               </p>
@@ -132,7 +132,7 @@ export default function Home() {
               What We Do
             </h2>
             <p className="text-lg text-muted-foreground">
-              EMF supports preparation and representation in leading global
+              EGSO supports preparation and representation in leading global
               competitions through a comprehensive framework.
             </p>
           </div>
@@ -230,7 +230,7 @@ export default function Home() {
               Get Involved
             </h2>
             <p className="text-lg text-muted-foreground">
-              EMF welcomes all who wish to contribute to scientific excellence
+              EGSO welcomes all who wish to contribute to scientific excellence
               in Egypt.
             </p>
           </div>
@@ -296,7 +296,7 @@ export default function Home() {
                     <div className="h-48 w-48 rounded-full border border-primary/10 flex items-center justify-center">
                       <div className="h-32 w-32 rounded-full bg-primary/20 blur-2xl"></div>
                       <span className="text-6xl font-bold text-primary opacity-50 absolute">
-                        EMF
+                        EGSO
                       </span>
                     </div>
                   </div>

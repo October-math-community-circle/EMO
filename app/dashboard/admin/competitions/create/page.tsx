@@ -192,7 +192,7 @@ export default function CreateCompetitionPage() {
                     </label>
                     <Input
                       type="text"
-                      placeholder='e.g. "EMF 2026 Preliminary Round"'
+                      placeholder='e.g. "EGSO 2026 Preliminary Round"'
                       {...register("title")}
                       disabled={isSubmitting}
                     />

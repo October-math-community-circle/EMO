@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     siteName: "Egyptian Math Olympiad",
     images: [
       {
-        url: "https://www.egyptmathematicalfoundation.org/logo.jpg",
+        url: "https://www.egyptmathematicalfoundation.org/logo.png",
         width: 1200,
         height: 630,
         alt: "Egyptian Math Olympiad",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "404 - Page Not Found",
     description: "404 - Page Not Found",
-    images: ["https://www.egyptmathematicalfoundation.org/logo.jpg"],
+    images: ["https://www.egyptmathematicalfoundation.org/logo.png"],
   },
 };
 export default function NotFound() {

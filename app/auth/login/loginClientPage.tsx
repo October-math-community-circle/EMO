@@ -184,7 +184,7 @@ function LoginPage({}, ref: ForwardedRef<boolean>) {
       >
         <div className="space-y-4">
           <p className="text-lg">
-            Welcome back to the <strong>EMF</strong>!
+            Welcome back to the <strong>EGSO</strong>!
           </p>
           <p className="text-gray-600">
             You have successfully logged in. Get ready to challenge yourself!

@@ -45,16 +45,16 @@ export function Navbar() {
               <div
                 className={`relative overflow-hidden rounded-full border-2 transition-all duration-300 ${
                   scrolled
-                    ? "h-10 w-10 border-primary/20"
-                    : "h-12 w-12 border-primary/10"
+                    ? "h-14 w-14 border-primary/20"
+                    : "h-16 w-16 border-primary/10"
                 }`}
               >
-                {/*  <Image
-                  src="/logo.jpg"
-                  alt="EMF Logo"
+                <Image
+                  src="/logo.png"
+                  alt="EGSO Logo"
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
-                /> */}
+                  className="object-contain group-hover:scale-110 transition-transform duration-500"
+                />
               </div>
               <div className="flex flex-col">
                 <span
@@ -62,14 +62,14 @@ export function Navbar() {
                     scrolled ? "text-xl" : "text-2xl"
                   }`}
                 >
-                  EMF
+                  EGSO
                 </span>
                 <span
                   className={`font-bold tracking-widest uppercase text-black font-semibold -mt-1 transition-all duration-300 ${
                     scrolled ? "text-[0.5rem] opacity-80" : "text-[0.6rem]"
                   }`}
                 >
-                  Egypt Mathematical Foundation
+                  EG Science Olympiad
                 </span>
               </div>
             </Link>
@@ -221,7 +221,7 @@ export function Navbar() {
       </div>
 
       {/* Red Alert Support Banner - Redesigned for a cleaner look */}
-      <div className="bg-red-500 text-white py-2 relative border-t border-white/10 shadow-sm">
+      <div className="bg-primary text-white py-2 relative border-t border-white/10 shadow-sm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/*  <div className="flex items-center justify-center gap-3 text-center">
             <span className="relative flex h-1.5 w-1.5">

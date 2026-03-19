@@ -4,7 +4,7 @@ import getUser from "@/lib/utils/getUser";
 
 export const metadata: Metadata = {
   title: "Verify Email",
-  description: "Verify your email address for EMF",
+  description: "Verify your email address for EGSO",
 };
 export const dynamic = "force-dynamic";
 

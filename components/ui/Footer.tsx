@@ -8,20 +8,25 @@ export function Footer() {
   return (
     <footer className="bg-white border-t border-border">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="md:col-span-1">
             <div className="flex items-center mb-6">
-              <div className="relative h-10 w-10 mr-3 rounded-full overflow-hidden border border-border">
+              <div className="relative h-16 w-16 mr-3 rounded-full overflow-hidden border border-border">
                 <Image
-                  src="/logo.jpg"
-                  alt="EMF"
+                  src="/logo.png"
+                  alt="EGSO"
                   fill
-                  className="object-cover"
+                  className="object-contain"
                 />
               </div>
-              <span className="text-2xl font-black tracking-tight text-foreground">
-                EMF
-              </span>
+              <div>
+                <span className="text-2xl font-black tracking-tight text-foreground">
+                  EGSO
+                </span>
+                <p className="text-sm text-muted-foreground">
+                  Egypt Science Olympiad
+                </p>
+              </div>
             </div>
           </div>
 
@@ -70,10 +75,11 @@ export function Footer() {
               Contact
             </h3>
             <ul className="space-y-4">
-              <li className="text-sm text-muted-foreground">
+              <li className="text-sm text-muted-foreground break-all">
                 <a
                   href="mailto:admin@egyptmathematicalfoundation.org"
                   target="_blank"
+                  className="hover:text-primary transition-colors"
                 >
                   admin@egyptmathematicalfoundation.org
                 </a>
@@ -107,10 +113,10 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        <div className="mt-12 border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-12 border-t border-border pt-8 flex flex-col md:flex-row flex-wrap justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Egypt Mathematical Foundation. All
-            rights reserved.
+            &copy; {new Date().getFullYear()} EG Science Olympiad. All rights
+            reserved.
           </p>
           <div className="flex gap-6">
             <span className="text-sm text-muted-foreground hover:text-foreground cursor-pointer">

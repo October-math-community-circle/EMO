@@ -2,9 +2,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { FaFacebook, FaLinkedin, FaYoutube, FaEnvelope } from "react-icons/fa6";
 
 export const metadata = {
-  title: "Contact Us | Egypt Mathematical Foundation",
+  title: "Contact Us | EG Science Olympiad",
   description:
-    "Get in touch with the Egypt Mathematical Foundation for any inquiries about the Egyptian Math Olympiad.",
+    "Get in touch with the EG Science Olympiad for any inquiries about the Egyptian Math Olympiad.",
 };
 export default function ContactPage() {
   const contactInfo = [
@@ -25,13 +25,13 @@ export default function ContactPage() {
     },
     {
       title: "LinkedIn",
-      value: "Egypt Mathematical Foundation",
+      value: "EG Science Olympiad",
       icon: <FaLinkedin className="w-8 h-8 text-blue-700" />,
       link: "https://eg.linkedin.com/company/october-math-community-circle",
       description:
         "Connect with us professionally and stay updated on our corporate news.",
     },
-  /*   {
+    /*   {
       title: "YouTube",
       value: "@OctoberMathCommunityCircle",
       icon: <FaYoutube className="w-8 h-8 text-red-600" />,
@@ -119,7 +119,7 @@ export default function ContactPage() {
             href="/about"
             className="px-6 py-2 rounded-full border border-border hover:border-primary/30 hover:bg-primary/5 transition-all text-sm font-medium"
           >
-            About EMF
+            About EGSO
           </a>
           <a
             href="/"

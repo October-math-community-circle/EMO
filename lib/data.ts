@@ -21,7 +21,7 @@ export interface StudentResult {
 export const competitions: Competition[] = [
   {
     id: "c1",
-    title: "EMF 2024 - National Round",
+    title: "EGSO 2024 - National Round",
     division: "Senior",
     round: "National",
     date: "Oct 26, 2024",
