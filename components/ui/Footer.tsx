@@ -70,42 +70,33 @@ export function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="">
             <h3 className="text-sm font-bold text-foreground tracking-widest uppercase mb-6">
               Contact
             </h3>
             <ul className="space-y-4">
               <li className="text-sm text-muted-foreground break-all">
-                <a
+                {/*  <a
                   href="mailto:admin@egyptmathematicalfoundation.org"
                   target="_blank"
                   className="hover:text-primary transition-colors"
                 >
                   admin@egyptmathematicalfoundation.org
-                </a>
+                </a> */}
               </li>
               <li className="flex gap-4 mt-4">
                 <div className="w-8 h-8 rounded bg-zinc-100 hover:bg-primary/10 transition-colors cursor-pointer flex items-center justify-center text-foreground font-bold text-xs">
-                  <a
-                    target="_blank"
-                    href="https://www.facebook.com/profile.php?id=61579737463401"
-                  >
+                  <a target="_blank" href="#">
                     FB
                   </a>
                 </div>
                 <div className="w-8 h-8 rounded bg-zinc-100 hover:bg-primary/10 transition-colors cursor-pointer flex items-center justify-center text-foreground font-bold text-xs">
-                  <a
-                    target="_blank"
-                    href="https://eg.linkedin.com/company/october-math-community-circle"
-                  >
+                  <a target="_blank" href="#">
                     <FaLinkedin size={15} />
                   </a>
                 </div>
                 <div className="w-8 h-8 rounded bg-zinc-100 hover:bg-primary/10 transition-colors cursor-pointer flex items-center justify-center text-foreground font-bold text-xs">
-                  <a
-                    target="_blank"
-                    href="https://www.youtube.com/@OctoberMathCommunityCircle"
-                  >
+                  <a target="_blank" href="#">
                     <FaYoutube size={15} />
                   </a>
                 </div>

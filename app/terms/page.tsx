@@ -41,10 +41,10 @@ export default function TermsPage() {
         <Card className="border-zinc-200 shadow-2xl shadow-zinc-200/50 rounded-[2.5rem] overflow-hidden">
           <CardHeader className="bg-zinc-950 p-10 md:p-14 text-white">
             <CardTitle className="text-3xl font-bold">
-              The EMO Agreement
+              The ESO Agreement
             </CardTitle>
             <p className="text-zinc-400 mt-4 leading-relaxed">
-              By participating in the Egyptian Math Olympiad, you agree to
+              By participating in the Science Olympiad, you agree to
               uphold the standards of excellence, integrity, and intellectual
               honesty that our community represents.
             </p>
@@ -62,7 +62,7 @@ export default function TermsPage() {
               </div>
               <div className="pl-14 space-y-4 text-muted-foreground leading-relaxed text-lg">
                 <p>
-                  At EMO, we trust our participants to lead with honesty. You
+                  At ESO, we trust our participants to lead with honesty. You
                   are{" "}
                   <strong className="text-foreground">
                     solely responsible
@@ -139,7 +139,7 @@ export default function TermsPage() {
               </div>
               <div className="pl-14 space-y-4 text-muted-foreground leading-relaxed text-lg">
                 <p>
-                  Participation in EMO is a privilege. We expect all candidates
+                  Participation in ESO is a privilege. We expect all candidates
                   to treat their peers, proctors, and the community at large
                   with respect. Scientific integrity and the avoidance of
                   plagiarism are non-negotiable pillars of our mission.

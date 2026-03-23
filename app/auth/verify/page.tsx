@@ -219,15 +219,7 @@ export default function VerifyEmailPage() {
           )}
 
           <div className="pt-4 border-t border-gray-200">
-            <p className="text-center text-sm text-gray-600">
-              Need help?{" "}
-              <Link
-                href="/contact"
-                className="font-semibold text-primary hover:underline"
-              >
-                Contact Support
-              </Link>
-            </p>
+            <p className="text-center text-sm text-gray-600">Need help? </p>
           </div>
         </CardContent>
       </Card>

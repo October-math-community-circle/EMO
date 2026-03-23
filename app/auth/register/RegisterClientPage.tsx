@@ -114,9 +114,6 @@ function RegisterPage({}, ref: ForwardedRef<boolean>) {
           <CardTitle className="text-2xl font-bold text-primary">
             Student Registration
           </CardTitle>
-          <p className="text-sm text-gray-500">
-            Join the Egyptian Math Olympiad
-          </p>
         </CardHeader>
         <CardContent>
           {/* eslint-disable-next-line react-hooks/refs */}

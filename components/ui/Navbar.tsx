@@ -12,8 +12,8 @@ import { auth } from "@/app/firebase";
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
   { label: "Register", href: "/register" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  //{ label: "About", href: "https://" },
+  //  { label: "Contact", href: "/contact" },
 ];
 
 export function Navbar() {
@@ -111,6 +111,14 @@ export function Navbar() {
                   Dashboard
                 </Link>
               ) : null}
+              <a
+                href="https://aast.edu"
+                target="_blank"
+                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200
+                  text-muted-foreground hover:text-foreground hover:bg-zinc-200/50`}
+              >
+                About
+              </a>
             </div>
             <Button
               onClick={async () => {

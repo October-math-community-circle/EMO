@@ -64,15 +64,15 @@ export default function Home() {
                     Join the Community
                   </Button>
                 </Link>
-                <Link href="/about">
+                <a href="https://aast.edu" target="_blank">
                   <Button
                     variant="outline"
                     size="lg"
                     className="w-full sm:w-auto text-base h-12"
                   >
-                    Explore Our Mission
+                    About
                   </Button>
-                </Link>
+                </a>
               </div>
             </div>
 
@@ -123,7 +123,86 @@ export default function Home() {
           </p>
         </div>
       </section>
+      {/* Competitions Registered In Section */}
+      <section className="py-24 bg-zinc-900 text-white border-y border-border">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="mb-20 text-center max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold tracking-tight mb-4">
+              Competitions Registered In
+            </h2>
+            <p className="text-lg text-zinc-400">
+              A list of the prestigious international competitions our students
+              have successfully participated in.
+            </p>
+          </div>
 
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "International Physics Olympiad (IPhO)",
+                desc: "An annual physics competition for high school students.",
+                link: "https://ipho-new.org/",
+              },
+              {
+                title: "Balkan Mathematical Olympiad (BMO) 2026",
+                desc: "The Balkan Mathematical Olympiad (BMO) is an annual mathematics competition for high school students from Balkan countries.",
+                link: "https://hms.gr/43bmo2026/",
+              },
+              {
+                title: "East Africa Math Olympiad",
+                desc: "The East Africa Mathematical Olympiad (EAMO) is an annual mathematics competition for high school students from East African countries.",
+                link: "https://www.eamo-official.org/",
+              },
+              {
+                title: "Pan African Mathematics Olympiad",
+                desc: "The Pan African Mathematics Olympiad (PAMO) is an annual mathematics competition for high school students from African countries.",
+                link: "https://www.pamoofficial.org/",
+              },
+              {
+                title: "Arab Mathematics Olympiad",
+                desc: "The Arab Mathematics Olympiad (AMO) is an annual mathematics competition for high school students from Arab countries.",
+                link: "https://www.alecso.org/nsite/en/component/content/article/843-arab-mathematical-olympiad?catid=51&Itemid=220",
+              },
+            ].map((competition, i) => (
+              <Card
+                key={i}
+                className="h-full bg-zinc-800/50 border-zinc-700 hover:border-primary/50 transition-colors flex flex-col"
+              >
+                <CardContent className="p-8 pt-8 flex flex-col flex-1">
+                  <h3 className="text-xl font-bold text-zinc-100 mb-3">
+                    {competition.title}
+                  </h3>
+                  <p className="text-zinc-400 leading-relaxed mb-6 flex-1">
+                    {competition.desc}
+                  </p>
+                  <a
+                    href={competition.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-white font-bold hover:underline transition-colors mt-auto w-fit"
+                  >
+                    Visit Website
+                    <svg
+                      className="ml-2 w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                  </a>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
       {/* What We Do Section */}
       <section className="py-32">
         <div className="container mx-auto px-4 max-w-7xl">
@@ -277,14 +356,6 @@ export default function Home() {
                       className="h-14 px-8 text-base bg-white text-zinc-950 hover:bg-zinc-100 font-semibold shadow-xl shadow-black/20"
                     >
                       Create Student Account
-                    </Button>
-                  </Link>
-                  <Link href="/contact">
-                    <Button
-                      size="lg"
-                      className="h-14 px-8 text-base border border-white/20 text-white hover:bg-white/10 hover:border-white/40 transition-all font-medium"
-                    >
-                      Partner With Us
                     </Button>
                   </Link>
                 </div>

@@ -104,31 +104,6 @@ export default function ContactPage() {
           ))}
         </div>
       </div>
-
-      {/* Quick Links Section */}
-      <div className="max-w-4xl mx-auto mt-24 text-center border-t border-slate-200 pt-16">
-        <h3 className="text-xl font-bold mb-4">Need immediate help?</h3>
-        <div className="flex flex-wrap justify-center gap-6">
-          <a
-            href="/register"
-            className="px-6 py-2 rounded-full border border-border hover:border-primary/30 hover:bg-primary/5 transition-all text-sm font-medium"
-          >
-            Competition Registration
-          </a>
-          <a
-            href="/about"
-            className="px-6 py-2 rounded-full border border-border hover:border-primary/30 hover:bg-primary/5 transition-all text-sm font-medium"
-          >
-            About EGSO
-          </a>
-          <a
-            href="/"
-            className="px-6 py-2 rounded-full border border-border hover:border-primary/30 hover:bg-primary/5 transition-all text-sm font-medium"
-          >
-            Back to Homepage
-          </a>
-        </div>
-      </div>
     </div>
   );
 }
