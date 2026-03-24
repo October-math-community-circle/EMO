@@ -207,6 +207,15 @@ export function Navbar() {
               Dashboard
             </Link>
           ) : null}
+          <a
+                href="https://aast.edu"
+                target="_blank"
+                className={`block px-4 py-3 rounded-lg 
+                             text-base font-medium transition-colors 
+                            text-foreground hover:bg-zinc-50`}
+              >
+                About
+              </a>
           <div className=" mt-2 border-t border-dashed border-border px-1">
             <Button
               onClick={async () => {
