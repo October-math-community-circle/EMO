@@ -40,6 +40,9 @@ service cloud.firestore {
         isOwner(get(/databases/$(database)/documents/registrations/$(resource.data.registrationId)).data.uid);
       allow write: if isAdmin();
     }
+    match /problems/{problemId} {
+      allow read,write: if isAdmin();
+    }
     match /users/{userId} {
       allow read, write:if isAdmin() || (isOwner(userId) && 
       isStudent());
