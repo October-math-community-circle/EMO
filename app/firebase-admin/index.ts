@@ -1,6 +1,7 @@
 import { cert, getApps, initializeApp } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 import { getAuth } from "firebase-admin/auth";
+import { getStorage } from "firebase-admin/storage";
 const apps = getApps();
 const app = apps.length
   ? apps[0]
@@ -15,3 +16,4 @@ const app = apps.length
     });
 export const db = getFirestore(app, "main");
 export const auth = getAuth(app);
+//export const storage = getStorage(app).bucket("omcc-5f0b2.appspot.com");
