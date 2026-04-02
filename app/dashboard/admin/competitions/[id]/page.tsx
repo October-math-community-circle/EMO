@@ -7,7 +7,7 @@ import {
 } from "@/app/server-actions/adminActions";
 import { notFound } from "next/navigation";
 import CompetitionDashboard from "./clientDashboard";
-import { Competition } from "@/types/competition";
+import { Competition } from "@october-math-community-circle/shared-utitilies/competition";
 import { Timestamp } from "firebase-admin/firestore";
 
 async function page({ params }: { params: Promise<{ id: string }> }) {

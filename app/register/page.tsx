@@ -1,6 +1,6 @@
 import { db } from "@/app/firebase-admin";
 import { Timestamp } from "firebase-admin/firestore";
-import { Competition } from "@/types/competition";
+import { Competition } from "@october-math-community-circle/shared-utitilies/competition";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Metadata } from "next";

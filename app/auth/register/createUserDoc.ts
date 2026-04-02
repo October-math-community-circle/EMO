@@ -2,7 +2,7 @@
 
 import { auth, db } from "@/app/firebase-admin";
 import { serverActionWrapperRESPONSE } from "@/lib/utils/serverActionWrapper";
-import { Student } from "@/types/auth";
+import { Student } from "@october-math-community-circle/shared-utitilies/auth";
 import { Timestamp } from "firebase-admin/firestore";
 
 async function createUserInternal(

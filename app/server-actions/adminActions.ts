@@ -2,9 +2,9 @@
 
 import { db } from "@/app/firebase-admin";
 import { serverActionWrapperRESPONSE } from "@/lib/utils/serverActionWrapper";
-import { Student } from "@/types/auth";
-import { Competition } from "@/types/competition";
-import { Mark, Registration } from "@/types/registration";
+import { Student } from "@october-math-community-circle/shared-utitilies/auth";
+import { Competition } from "@october-math-community-circle/shared-utitilies/competition";
+import { Mark, Registration } from "@october-math-community-circle/shared-utitilies/registration";
 import { Timestamp } from "firebase-admin/firestore";
 
 // --- Internal Implementation Functions ---

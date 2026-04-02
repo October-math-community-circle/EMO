@@ -9,11 +9,14 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Modal } from "@/components/ui/Modal";
-import { Mark, Registration } from "@/types/registration";
+import {
+  Mark,
+  Registration,
+} from "@october-math-community-circle/shared-utitilies/registration";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/app/firebase";
 import { useRouter } from "next/navigation";
-import { Competition } from "@/types/competition";
+import { Competition } from "@october-math-community-circle/shared-utitilies/competition";
 
 // Egyptian Governorates
 const GOVERNORATES = [

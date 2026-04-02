@@ -3,10 +3,13 @@ import getUser from "@/lib/utils/getUser";
 import { db } from "@/app/firebase-admin";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { Mark, Registration } from "@/types/registration";
+import {
+  Mark,
+  Registration,
+} from "@october-math-community-circle/shared-utitilies/registration";
 import { RegistrationCard } from "./RegistrationCard";
 import { FieldPath, Timestamp } from "firebase-admin/firestore";
-import { Competition } from "@/types/competition";
+import { Competition } from "@october-math-community-circle/shared-utitilies/competition";
 export const dynamic = "force-dynamic";
 export default async function StudentDashboard() {
   const user = await getUser();

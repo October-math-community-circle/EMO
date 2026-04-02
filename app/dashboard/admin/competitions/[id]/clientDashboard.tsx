@@ -35,10 +35,13 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 import { auth } from "@/app/firebase";
-import type { Registration, Mark } from "@/types/registration";
+import type {
+  Registration,
+  Mark,
+} from "@october-math-community-circle/shared-utitilies/registration";
 import { ToastContainer, toast, TypeOptions } from "react-toastify";
-import { Competition } from "@/types/competition";
-import { Student } from "@/types/auth";
+import { Competition } from "@october-math-community-circle/shared-utitilies/competition";
+import { Student } from "@october-math-community-circle/shared-utitilies/auth";
 
 const GOVERNORATES = [
   "Cairo",

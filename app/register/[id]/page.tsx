@@ -2,7 +2,7 @@ import { db } from "@/app/firebase-admin";
 import getUser from "@/lib/utils/getUser";
 import { forbidden, notFound, redirect } from "next/navigation";
 import { CompetitionRegisterPage } from "./clientRegisterPage";
-import { Competition } from "@/types/competition";
+import { Competition } from "@october-math-community-circle/shared-utitilies/competition";
 
 import { FieldPath, Timestamp } from "firebase-admin/firestore";
 

@@ -4,7 +4,7 @@ import { onIdTokenChanged } from "firebase/auth";
 import { signin } from "@/app/server-actions/signin";
 import { signout } from "@/app/server-actions/signout";
 import { auth } from "./";
-import { User } from "@/types/auth";
+import { User } from "@october-math-community-circle/shared-utitilies/auth";
 import { usePathname, useRouter } from "next/navigation";
 import isProtectedRoute from "@/lib/utils/isProtectedRoute";
 export const FirebaseContext = createContext<{ user: User | null }>({

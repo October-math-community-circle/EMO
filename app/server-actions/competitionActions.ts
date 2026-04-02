@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/app/firebase-admin";
-import type { CompetitionStatus } from "@/types/competition";
+import type { CompetitionStatus } from "@october-math-community-circle/shared-utitilies/competition";
 import { FieldValue } from "firebase-admin/firestore";
 
 // ─── Create a new competition ────────────────────────────────────────────────

@@ -35,10 +35,10 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { auth } from "@/app/firebase";
-import type { Registration } from "@/types/registration";
+import type { Registration } from "@october-math-community-circle/shared-utitilies/registration";
 import { ToastContainer, TypeOptions, toast } from "react-toastify";
-import { Student } from "@/types/auth";
-import { Competition } from "@/types/competition";
+import { Student } from "@october-math-community-circle/shared-utitilies/auth";
+import { Competition } from "@october-math-community-circle/shared-utitilies/competition";
 const GOVERNORATES = [
   "Cairo",
   "Giza",
