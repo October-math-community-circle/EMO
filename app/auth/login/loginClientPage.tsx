@@ -25,7 +25,6 @@ const schema = yup.object({
 
 function LoginPage({}, ref: ForwardedRef<boolean>) {
   const [showSuccess, setShowSuccess] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
   const {
@@ -41,7 +40,6 @@ function LoginPage({}, ref: ForwardedRef<boolean>) {
   const handleLogin = async (data: yup.InferType<typeof schema>) => {
     try {
       (ref as RefObject<boolean>).current = true;
-      setErrorMessage("");
       await signInWithEmailAndPassword(auth, data.email, data.password);
       setShowSuccess(true);
     } catch (error) {
@@ -75,7 +73,7 @@ function LoginPage({}, ref: ForwardedRef<boolean>) {
         </CardHeader>
         <CardContent>
           {/* eslint-disable-next-line react-hooks/refs */}
-          <form onSubmit={handleSubmit(handleLogin)} className="space-y-6">
+          <form onSubmit={handleSubmit(handleLogin)} className="space-y-4">
             <Input
               label="Email"
               type="email"
@@ -147,10 +145,6 @@ function LoginPage({}, ref: ForwardedRef<boolean>) {
                 Forgot Password?
               </Link>
             </div>
-
-            {errorMessage && (
-              <p className="text-sm text-red-600 text-center">{errorMessage}</p>
-            )}
 
             <Button
               type="submit"
