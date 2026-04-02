@@ -58,7 +58,14 @@ const schema = yup.object({
   status: yup
     .string()
     .required("Status is required")
-    .oneOf(["draft", "open", "in_progress", "completed", "cancelled"]),
+    .oneOf([
+      "draft",
+      "open",
+      "in_progress",
+      "completed",
+      "cancelled",
+      "closed",
+    ]),
   startDate: yup.string().required("Start Date is required"),
   duration: yup
     .number()
@@ -117,7 +124,10 @@ export default function EditCompetitionForm({
       maxParticipants: initialData.maxParticipants || 0,
       status: initialData.status || "draft",
       startDate: initialData.startDate
-        ? new Date(initialData.startDate as string).toISOString().slice(0, 16)
+        ? new Date(initialData.startDate as string)
+            .toLocaleString("sv-SE", { hour12: false })
+            .replace(" ", "T")
+            .slice(0, 16)
         : "",
       duration:
         initialData.startDate && initialData.endDate
