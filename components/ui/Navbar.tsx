@@ -21,6 +21,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const user = useUser();
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(Math.floor(window.scrollY) > 10);
@@ -111,7 +112,36 @@ export function Navbar() {
                   Dashboard
                 </Link>
               ) : null}
+
+              {/* Exam Button - Desktop */}
+              <Link
+                href="https://emo-competition-portal.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative ml-1 flex items-center gap-1.5 px-4 py-1.5 text-sm font-bold text-white transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-red-500/30"
+                style={{
+                  background: "linear-gradient(135deg, #ef4444, #b91c1c)",
+                  clipPath:
+                    "polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%)",
+                }}
+              >
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M12 20h9" />
+                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                </svg>
+                Exam
+              </Link>
             </div>
+
             <Button
               onClick={async () => {
                 await signOut(auth);
@@ -199,7 +229,37 @@ export function Navbar() {
               Dashboard
             </Link>
           ) : null}
-          <div className=" mt-2 border-t border-dashed border-border px-1">
+
+          {/* Exam Button - Mobile */}
+          <Link
+            href="https://emo-competition-portal.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setIsOpen(false)}
+            className="flex items-center gap-2 px-4 py-3 text-base font-bold text-white transition-all duration-200 hover:opacity-90"
+            style={{
+              background: "linear-gradient(135deg, #ef4444, #b91c1c)",
+              clipPath:
+                "polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%)",
+            }}
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M12 20h9" />
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+            </svg>
+            Exam
+          </Link>
+
+          <div className="mt-2 border-t border-dashed border-border px-1">
             <Button
               onClick={async () => {
                 await signOut(auth);
@@ -220,31 +280,11 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Red Alert Support Banner - Redesigned for a cleaner look */}
+      {/* Red Alert Support Banner */}
       <div className="bg-red-500 text-white py-2 relative border-t border-white/10 shadow-sm">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/*  <div className="flex items-center justify-center gap-3 text-center">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"></span>
-            </span>
-            <p className="text-[11px] sm:text-[13px] font-medium tracking-tight">
-              We are currently seeking an urgent sponsor to support our upcoming
-              olympiads.
-              <Link
-                href="/contact"
-                prefetch
-                className="ml-2.5 font-bold hover:underline transition-all inline-flex items-center gap-1 group"
-              >
-                Partner with us
-                <span className="group-hover:translate-x-0.5 transition-transform">
-                  →
-                </span>
-              </Link>
-            </p>
-          </div> */}
           <div className="flex items-center justify-center gap-3 text-center mt-0.5">
-            <p className="font-bold text-[11px] sm:text-[13px]  tracking-tight ">
+            <p className="font-bold text-[11px] sm:text-[13px] tracking-tight">
               We are the same people, the same plans, and everything is fine. we
               just changed the name of the organization.
             </p>
@@ -253,4 +293,4 @@ export function Navbar() {
       </div>
     </nav>
   );
-}
+          }
