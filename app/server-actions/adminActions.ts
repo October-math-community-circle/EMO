@@ -1,6 +1,7 @@
 "use server";
 
-import { db } from "@/app/firebase-admin";
+import { auth, db } from "@/app/firebase-admin";
+import getUser from "@/lib/utils/getUser";
 import { serverActionWrapperRESPONSE } from "@/lib/utils/serverActionWrapper";
 import { Student } from "@/types/auth";
 import { Competition } from "@/types/competition";
@@ -135,8 +136,24 @@ async function getCompetitionsInternal(): Promise<Competition[]> {
     }); // Simple descending sort
 }
 
+export async function createAdminUser(email: string, password: string) {
+  const currUser = await getUser();
+  if (currUser?.role !== "admin") {
+    throw new Error("You are not authorized to perform this action");
+  }
+  const userRecord = await auth.createUser({
+    email,
+    password,
+  });
+  await auth.setCustomUserClaims(userRecord.uid, { role: "admin" });
+  return null;
+}
 // --- Wrapped Exports ---
-
+export const createAdmin = serverActionWrapperRESPONSE(
+  createAdminUser,
+  null,
+  "Failed to create admin",
+);
 export const getStudents = serverActionWrapperRESPONSE(
   getStudentsInternal,
   {},
